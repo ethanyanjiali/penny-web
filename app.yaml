@@ -1,0 +1,15 @@
+# runtime: nodejs
+# env: flex
+
+# manual_scaling:
+#   instances: 1
+
+# service: savorlink-web-dev
+
+runtime: nodejs
+env: flex
+
+handlers:
+- url: /.*
+  script: server.js
+  secure: never
