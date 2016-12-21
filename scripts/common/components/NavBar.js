@@ -34,7 +34,6 @@ class NavBar extends Component {
 			<Grid style={{paddingTop: '10px'}}>
 				{penny}
 				{manage}
-			}
 			</Grid>
 		);
 	}
