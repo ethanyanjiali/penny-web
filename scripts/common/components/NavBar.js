@@ -24,7 +24,9 @@ class NavBar extends Component {
 
 		const penny = (
 			<Grid.Column textAlign='left' mobile={4} tablet={3} computer={2}>
-				<Image style={{paddingLeft: '15px'}} src={require('../../../assets/images/penny.png')} size='tiny'/>
+				<Link to={'/welcome'} >
+					<Image style={{paddingLeft: '15px'}} src={require('../../../assets/images/penny.png')} size='small'/>
+				</Link>
 			</Grid.Column>
 		);
 
