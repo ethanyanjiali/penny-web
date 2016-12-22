@@ -67,7 +67,7 @@ class EditEventContainer extends Component {
 						</Header>
 					</Grid.Row>
 					<Grid.Row centered columns={1}>
-						<Grid.Column textAlign='left' mobile={16} tablet={10} computer={7}>
+						<Grid.Column textAlign='left' mobile={16} tablet={10} computer={8}>
 							<AddExpense event={this.props.currentEvent}
 								isLoadingEvent={this.props.isLoadingEvent}
 								isAddingExpense={this.props.isAddingExpense}

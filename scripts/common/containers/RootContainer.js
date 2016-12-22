@@ -17,7 +17,7 @@ class RootContainer extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			bgImgIndex: this.getRandomInt(0, 7)
+			bgImgIndex: this.getRandomInt(0, 10)
 		}
 	}
 
@@ -29,13 +29,16 @@ class RootContainer extends Component {
 
 	render() {
 		let bgImgArray = [];
-		bgImgArray.push(require('../../../assets/images/bg_1.png'));
-		bgImgArray.push(require('../../../assets/images/bg_2.png'));
-		bgImgArray.push(require('../../../assets/images/bg_3.png'));
-		bgImgArray.push(require('../../../assets/images/bg_4.png'));
-		bgImgArray.push(require('../../../assets/images/bg_5.png'));
-		bgImgArray.push(require('../../../assets/images/bg_6.png'));
-		bgImgArray.push(require('../../../assets/images/bg_7.png'));
+		bgImgArray.push(require('../../../assets/images/bg_1.jpg'));
+		bgImgArray.push(require('../../../assets/images/bg_2.jpg'));
+		bgImgArray.push(require('../../../assets/images/bg_3.jpg'));
+		bgImgArray.push(require('../../../assets/images/bg_4.jpg'));
+		bgImgArray.push(require('../../../assets/images/bg_5.jpg'));
+		bgImgArray.push(require('../../../assets/images/bg_6.jpg'));
+		bgImgArray.push(require('../../../assets/images/bg_7.jpg'));
+		bgImgArray.push(require('../../../assets/images/bg_8.jpg'));
+		bgImgArray.push(require('../../../assets/images/bg_9.jpg'));
+		bgImgArray.push(require('../../../assets/images/bg_10.jpg'));
 
 		let bgImg = bgImgArray[this.state.bgImgIndex];
 
@@ -47,7 +50,7 @@ class RootContainer extends Component {
 			);
 		} else {
 			return (
-				<div>
+				<div style={{overflowX :'hidden'}}>
 					<Media query={{maxAspectRatio: '16/10'}} render={() => (
 			        	<img src={bgImg} style={{height: '100%', position: 'fixed', top: '0', left: '0'}} />
 			        )}/>
