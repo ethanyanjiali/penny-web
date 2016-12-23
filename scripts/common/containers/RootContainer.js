@@ -50,7 +50,7 @@ class RootContainer extends Component {
 			);
 		} else {
 			return (
-				<div style={{overflowX :'hidden'}}>
+				<div>
 					<Media query={{maxAspectRatio: '16/10'}} render={() => (
 			        	<img src={bgImg} style={{height: '100%', position: 'fixed', top: '0', left: '0'}} />
 			        )}/>
