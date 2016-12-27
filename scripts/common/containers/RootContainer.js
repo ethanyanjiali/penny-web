@@ -27,6 +27,10 @@ class RootContainer extends Component {
 		return Math.floor(Math.random() * (max - min)) + min;
 	}
 
+	showFeedback() {
+		alert('feedback');
+	}
+
 	render() {
 		let bgImgArray = [];
 		bgImgArray.push(require('../../../assets/images/bg_1.jpg'));
@@ -60,7 +64,8 @@ class RootContainer extends Component {
 			        <Media query={{minAspectRatio: '21/10'}} render={() => (
 			        	<img src={bgImg} style={{width: '100%', position: 'fixed', top: '-20%', left: '0'}} />
 			        )}/>
-					<NavBar event={this.props.currentEvent}/>
+					<NavBar event={this.props.currentEvent}
+						showFeedback={this.showFeedback.bind(this)}/>
 					{ this.props.children }
 				</div>
 			);
