@@ -154,7 +154,8 @@ class Settlement extends Component {
 				result[name] = oneBalance;
 			});
 			if (expense.involved.indexOf(expense.payor) == -1) {
-				result[expense.payor] = parseFloat(expense.amount);
+				let originalBalance = result[expense.payor] || 0.0;
+				result[expense.payor] = originalBalance + parseFloat(expense.amount);
 			}
 			return result;
 		}, {});
