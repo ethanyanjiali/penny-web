@@ -55,11 +55,11 @@ class ListExpense extends Component {
 					<Media query={{maxWidth: '321px'}} render={() => (
 						<Table.Cell width={4}>{numeral(expense.amount).format('0.0a')}</Table.Cell>
 					)}/>
-					<Media query={{minWidth: '321px'}} render={() => (
+					<Media query={{minWidth: '322px'}} render={() => (
 						<Table.Cell width={4}>{expense.amount}</Table.Cell>
 					)}/>
 					<Table.Cell width={4}>{expense.payor}</Table.Cell>
-					<Table.Cell width={2}textAlign='center'><Icon inverted={this.state.rowDetails[count]} circular name='users' onClick={this.toggleDetails.bind(this, count)}/></Table.Cell>
+					<Table.Cell width={2} textAlign='center'><Icon inverted={this.state.rowDetails[count]} circular name='users' onClick={this.toggleDetails.bind(this, count)}/></Table.Cell>
 					<Table.Cell width={2} textAlign='center'><Icon loading={isDeleting} circular name='delete' onClick={this.deleteExpense.bind(this, count)}/></Table.Cell>
 				</Table.Row>
 			);

@@ -19,7 +19,7 @@ class NavBar extends Component {
 					<Media query={{maxWidth: '500px'}} render={() => (
 						<Icon style={{paddingRight: '30px'}} color='black' name='settings' size='big'/>
 					)}/>
-					<Media query={{minWidth: '500px'}} render={() => (
+					<Media query={{minWidth: '501px'}} render={() => (
 						<Icon style={{paddingRight: '45px'}} color='black' name='settings' size='big'/>
 					)}/>
 				</Link>
@@ -29,7 +29,12 @@ class NavBar extends Component {
 		const penny = (
 			<Grid.Column textAlign='left' mobile={4} tablet={3} computer={2}>
 				<Link to={'/welcome'} >
-					<Image style={{paddingLeft: '15px'}} src={require('../../../assets/images/penny.png')} size='small'/>
+					<Media query={{maxWidth: '500px'}} render={() => (
+						<Image style={{marginLeft: '15px'}} src={require('../../../assets/images/penny.png')} size='small'/>
+					)}/>
+					<Media query={{minWidth: '501px'}} render={() => (
+						<Image style={{marginLeft: '15px'}} src={require('../../../assets/images/penny.png')} size='tiny'/>
+					)}/>
 				</Link>
 			</Grid.Column>
 		);
