@@ -16,12 +16,12 @@ class NavBar extends Component {
 		if (this.props.event) {
 			manage = (
 				<Link to={'/event/manage'} >
-				<Media query={{maxWidth: '500px'}} render={() => (
-					<Icon style={{paddingRight: '30px'}} color='black' name='settings' size='big'/>
-				)}/>
-				<Media query={{minWidth: '500px'}} render={() => (
-					<Icon style={{paddingRight: '45px'}} color='black' name='settings' size='big'/>
-				)}/>
+					<Media query={{maxWidth: '500px'}} render={() => (
+						<Icon style={{paddingRight: '30px'}} color='black' name='settings' size='big'/>
+					)}/>
+					<Media query={{minWidth: '500px'}} render={() => (
+						<Icon style={{paddingRight: '45px'}} color='black' name='settings' size='big'/>
+					)}/>
 				</Link>
 			);
 		}
@@ -35,7 +35,9 @@ class NavBar extends Component {
 		);
 
 		const feedback = (
-			<Icon style={{cursor: 'pointer', paddingRight: '30px'}} color='black' name='conversation' size='big' onClick={this.props.showFeedback}/>
+			<Link to={'/feedback'} >
+				<Icon style={{cursor: 'pointer', paddingRight: '30px'}} color='black' name='conversation' size='big'/>
+			</Link>
 		)
 
 		return (
