@@ -18,6 +18,10 @@ class FeedbackForm extends Component {
   		browserHistory.push(`/event/e/${this.props.event.id}`);
   	}
 
+  	returnToCreate() {
+  		browserHistory.push(`/event/create`);
+  	}
+
   	render() {
   		let errorMessage = null;
   		let helpMessage = (<Message header='Feedback' info
@@ -46,6 +50,9 @@ class FeedbackForm extends Component {
   		if (this.props.event) {
   			returnButton = (<Button type='button' basic color='black' 
 					content='Return' icon='reply' labelPosition='left' onClick={this.returnToEdit.bind(this)}/>);
+  		} else {
+  			returnButton = (<Button type='button' basic color='black' 
+					content='Return' icon='reply' labelPosition='left' onClick={this.returnToCreate.bind(this)}/>);
   		}
 
   		let mainContent;

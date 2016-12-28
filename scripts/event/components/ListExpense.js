@@ -1,6 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 import { Table, Icon, Form, Button, Input, Message, Dropdown, Segment, Header } from 'semantic-ui-react';
 import Media from 'react-media';
+import numeral from 'numeral';
 
 const propTypes = {
 };
@@ -51,7 +52,12 @@ class ListExpense extends Component {
 			rows.push(
 				<Table.Row key={'main'+count}>
 					<Table.Cell width={4}>{expense.description}</Table.Cell>
-					<Table.Cell width={4}>{expense.amount}</Table.Cell>
+					<Media query={{maxWidth: '321px'}} render={() => (
+						<Table.Cell width={4}>{numeral(expense.amount).format('0.0a')}</Table.Cell>
+					)}/>
+					<Media query={{minWidth: '321px'}} render={() => (
+						<Table.Cell width={4}>{expense.amount}</Table.Cell>
+					)}/>
 					<Table.Cell width={4}>{expense.payor}</Table.Cell>
 					<Table.Cell width={2}textAlign='center'><Icon inverted={this.state.rowDetails[count]} circular name='users' onClick={this.toggleDetails.bind(this, count)}/></Table.Cell>
 					<Table.Cell width={2} textAlign='center'><Icon loading={isDeleting} circular name='delete' onClick={this.deleteExpense.bind(this, count)}/></Table.Cell>
