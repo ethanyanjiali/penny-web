@@ -29,9 +29,28 @@ class EditEventContainer extends Component {
 		}
 	}
 
+	checkAndSetLocalStorage(id, name) {
+		let events = JSON.parse(localStorage.getItem('events')) || [];
+		if (!events.filter(event => JSON.parse(event).id === id).pop()) {
+			events.push(JSON.stringify({
+				id: id,
+				name: name
+			}));
+		}
+		localStorage.setItem('events', JSON.stringify(events));
+	}
+
+	componentWillReceiveProps(newProps) {
+		if (newProps.currentEvent) {
+			this.checkAndSetLocalStorage(this.props.params.eventId, newProps.currentEvent.name);
+		}
+	}
+
 	componentWillMount() {
 		if (!this.props.currentEvent) {
 			this.props.dispatch(eventAction.getEvent(this.props.params.eventId));
+		} else {
+			this.checkAndSetLocalStorage(this.props.params.eventId, this.props.currentEvent.name);
 		}
 	}
 

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Grid, Image, Button, Icon, Header, Divider, List } from 'semantic-ui-react';
 import { connect } from 'react-redux';
-import { browserHistory } from 'react-router';
+import { browserHistory, Link } from 'react-router';
 import Media from 'react-media';
 
 const mapStateToProps = state => {
@@ -21,6 +21,8 @@ class WelcomeContainer extends Component {
 	}
 
 	render() {
+		let events = localStorage.getItem('events');
+		let history = null;
 		return (
 			<div style={{height: '100%'}}>
 				<div style={{height: '100%', position: 'relative', borderBottom: '1px solid #eee'}}>
@@ -29,6 +31,7 @@ class WelcomeContainer extends Component {
 							<Image style={{margin:'auto'}} src={require('../../../assets/images/penny.png')} size='small'/>
 							<div style={{marginTop: '20px'}}>Neat and easy tool to split bills and share with friends.</div>
 							<Button onClick={this.goToCreation.bind(this)} style={{marginTop: '40px'}} basic color='black' content='Create An Event' icon='signup' labelPosition='left'/>
+							<div style={{marginTop: '20px', display: 'block'}}><Link to='history'><Icon name='history' color='grey'/><span style={{color: 'grey'}}>Event History</span></Link></div>
 						</div>
 					)}/>
 					<Media query={{minWidth: '351px'}} render={() => (
@@ -36,6 +39,7 @@ class WelcomeContainer extends Component {
 							<Image style={{margin:'auto'}} src={require('../../../assets/images/penny.png')} size='medium'/>
 							<div style={{marginTop: '20px'}}>Neat and easy tool to split bills and share with friends.</div>
 							<Button onClick={this.goToCreation.bind(this)} style={{marginTop: '40px'}} basic color='black' content='Create An Event' icon='signup' labelPosition='left'/>
+							<div style={{marginTop: '20px', display: 'block'}}><Link to='history'><Icon name='history' color='grey'/><span style={{color: 'grey'}}>Event History</span></Link></div>
 						</div>
 					)}/>
 					<div className='welcome-section breath' style={{textAlign:'center', bottom: '3%'}}>
