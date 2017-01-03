@@ -44,13 +44,13 @@ class RootContainer extends Component {
 
 		if (this.props.location.pathname == '/welcome') {
 			return (
-				<div>
+				<div style={{height: '100%'}}>
 					{ this.props.children }
 				</div>
 			);
 		} else {
 			return (
-				<div>
+				<div style={{height: '100%'}}>
 					<Media query={{maxAspectRatio: '16/10'}} render={() => (
 			        	<img src={bgImg} style={{height: '100%', position: 'fixed', top: '0', left: '0'}} />
 			        )}/>
