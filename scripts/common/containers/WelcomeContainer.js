@@ -57,7 +57,7 @@ class WelcomeContainer extends Component {
 							<Divider style={{marginTop: '20px'}}/>
 							<Image style={{margin:'auto', marginBottom: '30px', marginTop: '30px', display: 'block'}} src={require('../../../assets/images/tutorial_3.png')} size='small'
 							label={{ as: 'a', color: 'blue', content: 'Step 3', ribbon: true }}/>
-							At the bottom, the settlement instruction is automatically calculated for you
+							The settlement instruction is automatically calculated for you. Keep the link and share with your friends!
 							<Button onClick={this.goToCreation.bind(this)} style={{margin:'auto', display:'block', marginTop: '20px'}} basic color='black' content='Try it now' icon='signup' labelPosition='left'/>
 						</div>
 					)}/>
@@ -74,7 +74,7 @@ class WelcomeContainer extends Component {
 							<Divider  style={{marginTop: '40px'}}/>
 							<Image style={{margin:'auto', marginBottom: '50px', marginTop: '50px', display: 'block'}} src={require('../../../assets/images/tutorial_3.png')} size='medium'
 							label={{ as: 'a', color: 'blue', content: 'Step 3', ribbon: true, size: 'large' }}/>
-							<p style={{fontSize: '120%'}}>At the bottom, the settlement instruction is automatically calculated for you</p>
+							<p style={{fontSize: '120%'}}>The settlement instruction is automatically calculated for you. Keep the link and share with your friends!</p>
 							<Button onClick={this.goToCreation.bind(this)} style={{margin:'auto', display:'block', marginTop: '50px'}} basic color='black' content='Try it now' icon='signup' labelPosition='left'/>
 						</div>
 					)}/>
