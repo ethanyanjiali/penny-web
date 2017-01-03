@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Grid, Image, Button, Icon, Header, Divider } from 'semantic-ui-react';
+import { Grid, Image, Button, Icon, Header, Divider, List } from 'semantic-ui-react';
 import { connect } from 'react-redux';
 import { browserHistory } from 'react-router';
 import Media from 'react-media';
@@ -43,7 +43,7 @@ class WelcomeContainer extends Component {
 						Learn More
 					</div>
 				</div>
-				<div style={{padding: '12%', paddingTop: '10%', background: '#fdfdfd'}}>
+				<div style={{padding: '12%', paddingTop: '10%', background: '#fdfdfd', borderBottom: '1px solid #eee'}}>
 					<Media query={{maxWidth: '800px'}} render={() => (
 					    <div style={{textAlign: 'center'}}>
 					    	<Header style={{textAlign: 'left'}}>How it works</Header>
@@ -58,7 +58,7 @@ class WelcomeContainer extends Component {
 							<Image style={{margin:'auto', marginBottom: '30px', marginTop: '30px', display: 'block'}} src={require('../../../assets/images/tutorial_3.png')} size='small'
 							label={{ as: 'a', color: 'blue', content: 'Step 3', ribbon: true }}/>
 							At the bottom, the settlement instruction is automatically calculated for you
-							<Button onClick={this.goToCreation.bind(this)} style={{margin:'auto', display:'block', marginTop: '10px'}} basic color='black' content='Try it now' icon='signup' labelPosition='left'/>
+							<Button onClick={this.goToCreation.bind(this)} style={{margin:'auto', display:'block', marginTop: '20px'}} basic color='black' content='Try it now' icon='signup' labelPosition='left'/>
 						</div>
 					)}/>
 					<Media query={{minWidth: '801px'}} render={() => (
@@ -76,6 +76,34 @@ class WelcomeContainer extends Component {
 							label={{ as: 'a', color: 'blue', content: 'Step 3', ribbon: true, size: 'large' }}/>
 							<p style={{fontSize: '120%'}}>At the bottom, the settlement instruction is automatically calculated for you</p>
 							<Button onClick={this.goToCreation.bind(this)} style={{margin:'auto', display:'block', marginTop: '50px'}} basic color='black' content='Try it now' icon='signup' labelPosition='left'/>
+						</div>
+					)}/>
+				</div>
+				<div style={{padding: '12%', paddingTop: '10%', borderBottom: '1px solid #eee'}}>
+					<Media query={{maxWidth: '800px'}} render={() => (
+					    <div style={{textAlign: 'left'}}>
+					    	<Header style={{textAlign: 'left'}}>Tips</Header>
+					    	<List bulleted>
+					    		<List.Item>
+					    			Click <Icon name='settings'/> to change name and people of the event
+					    		</List.Item>
+					    		<List.Item style={{marginTop:'10px'}}>
+					    			Click <Icon name='conversation'/> to give us any feedback
+					    		</List.Item>
+					    	</List>
+						</div>
+					)}/>
+					<Media query={{minWidth: '801px'}} render={() => (
+					    <div style={{textAlign: 'left'}}>
+					    	<Header as='h1' style={{textAlign: 'left'}}>Tips</Header>
+							<List bulleted style={{marginTop:'30px'}}>
+					    		<List.Item>
+					    			<p style={{fontSize: '120%'}}>Click <Icon name='settings' size='large'/> to change name and people of the event</p>
+					    		</List.Item>
+					    		<List.Item style={{marginTop:'10px'}}>
+					    			<p style={{fontSize: '120%'}}>Click <Icon name='conversation' size='large'/> to give us any feedback</p>
+					    		</List.Item>
+					    	</List>
 						</div>
 					)}/>
 				</div>
