@@ -61,7 +61,7 @@ class AddExpense extends Component {
 								  fluid multiple selection options={options} />
 					</Form.Field>
 					<Form.Field>
-						<label>Payor</label>
+						<label>Payer</label>
 						<Dropdown name='payor' 
 								  placeholder='who paid this'
 								  onChange={this.props.changeFields} 

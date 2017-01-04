@@ -96,7 +96,7 @@ class ListExpense extends Component {
 							<Table.Row>
 								<Table.HeaderCell>Description</Table.HeaderCell>
 								<Table.HeaderCell>Amount</Table.HeaderCell>
-								<Table.HeaderCell>Payor</Table.HeaderCell>
+								<Table.HeaderCell>Payer</Table.HeaderCell>
 								<Table.HeaderCell textAlign='center'>Involved</Table.HeaderCell>
 								<Table.HeaderCell textAlign='center'>Delete</Table.HeaderCell>
 							</Table.Row>
