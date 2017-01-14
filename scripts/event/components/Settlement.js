@@ -1,5 +1,5 @@
 import React, { Component, PropTypes } from 'react';
-import { Table, Icon, List, Button, Image, Label, Dropdown, Segment } from 'semantic-ui-react';
+import { Table, Icon, List, Button, Image, Label, Dropdown, Segment, Header } from 'semantic-ui-react';
 
 const propTypes = {
 };
@@ -170,6 +170,7 @@ class Settlement extends Component {
 
   		return (
   			<Segment style={{marginTop: '20px', backgroundColor: 'rgba(255,255,255,0.7)'}}>
+  				<Header style={{textAlign:'center', borderBottom: '1px solid rgba(0,0,0,.1)', paddingBottom: '7px', marginBottom: '0px'}} as='h4'>Settlement</Header>
 				<List divided relaxed verticalAlign='middle'>
 					{rows}
 				</List>

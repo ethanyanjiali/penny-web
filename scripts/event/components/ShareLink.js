@@ -18,12 +18,13 @@ class ShareLink extends Component {
   				<div className='ui action fluid left icon input'>
 					<input 
 						type='text'
+						readOnly
 						value={this.props.url}
 					/>
 					<i className='linkify icon'/>
 					<CopyToClipboard text={this.props.url}
 	          			onCopy={() => this.setState({copied: true})}>
-	          			<button className='ui right labeled black basic icon button button' onClick={this.shareLink.bind(this)}>
+	          			<button className='ui right labeled black basic icon button button blink' onClick={this.shareLink.bind(this)}>
 	          				<i className='share alternate icon'/>
 	          				Share Link
 	          			</button>

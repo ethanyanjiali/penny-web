@@ -1,5 +1,5 @@
 import React, { Component, PropTypes } from 'react';
-import { Icon, Form, Button, Input, Message, Dropdown, Segment } from 'semantic-ui-react';
+import { Icon, Form, Button, Input, Message, Dropdown, Segment, Header } from 'semantic-ui-react';
 
 const propTypes = {
 };
@@ -9,7 +9,7 @@ class AddExpense extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			visible: false
+			visible: props.event ? !props.event.expenses : false
 		};
 	}
 
@@ -79,6 +79,13 @@ class AddExpense extends Component {
 
   		return (
   			<Segment style={{marginTop: '5px', backgroundColor: 'rgba(255,255,255,0.7)'}}>
+  				{ 
+  					this.state.visible 
+  					? 
+  					<Header style={{textAlign:'center', borderBottom: '1px solid rgba(0,0,0,.1)', paddingBottom: '7px', marginBottom: '7px'}} as='h4'>Add an expense</Header>
+  					:
+  					null
+  				}
 				{mainContent}
 			</Segment>
 		);

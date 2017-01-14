@@ -7,6 +7,13 @@
 	width: 100%;
 }
 
+.blink {
+  -webkit-animation: blink 4s; 
+          animation: blink 4s;
+  -webkit-animation-iteration-count:infinite;
+          animation-iteration-count:infinite;
+}
+
 .breath {
   -webkit-animation: breath 3s; 
           animation: breath 3s;
@@ -33,4 +40,33 @@
   0%    {opacity:   0;}
   60%   {opacity:   1;}
   100%  {opacity:   0;}
+}
+
+@-webkit-keyframes blink {
+  0%    {opacity:   1;}
+  10%    {opacity:   1;}
+  22%   {opacity:   0.2;}
+  34%   {opacity:   1;}
+  100%  {opacity:   1;}
+}
+@-o-keyframes blink {
+  0%    {opacity:   1;}
+  10%    {opacity:   1;}
+  22%   {opacity:   0.2;}
+  34%   {opacity:   1;}
+  100%  {opacity:   1;}
+}
+@-moz-keyframes blink {
+  0%    {opacity:   1;}
+  10%    {opacity:   1;}
+  22%   {opacity:   0.2;}
+  34%   {opacity:   1;}
+  100%  {opacity:   1;}
+}
+@keyframes blink {
+  0%    {opacity:   1;}
+  10%    {opacity:   1;}
+  22%   {opacity:   0.2;}
+  34%   {opacity:   1;}
+  100%  {opacity:   1;}
 }
