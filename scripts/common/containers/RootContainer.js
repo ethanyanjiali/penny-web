@@ -5,6 +5,7 @@ import * as userAction from '../../user/UserAction';
 import Media from 'react-media';
 import { Dimmer, Loader, Segment } from 'semantic-ui-react';
 import { browserHistory } from 'react-router';
+import ProgressiveImage from 'react-progressive-image';
 
 const mapStateToProps = state => {
 	return {
@@ -29,6 +30,7 @@ class RootContainer extends Component {
 
 	render() {
 		let bgImgArray = [];
+		let bgImgThumbnailArray = [];
 		bgImgArray.push(require('../../../assets/images/bg_1.jpg'));
 		bgImgArray.push(require('../../../assets/images/bg_2.jpg'));
 		bgImgArray.push(require('../../../assets/images/bg_3.jpg'));
@@ -40,7 +42,22 @@ class RootContainer extends Component {
 		bgImgArray.push(require('../../../assets/images/bg_9.jpg'));
 		bgImgArray.push(require('../../../assets/images/bg_10.jpg'));
 
+        bgImgThumbnailArray.push(require('../../../assets/images/bg_1_thumbnail.jpg'));
+        bgImgThumbnailArray.push(require('../../../assets/images/bg_2_thumbnail.jpg'));
+        bgImgThumbnailArray.push(require('../../../assets/images/bg_3_thumbnail.jpg'));
+        bgImgThumbnailArray.push(require('../../../assets/images/bg_4_thumbnail.jpg'));
+        bgImgThumbnailArray.push(require('../../../assets/images/bg_5_thumbnail.jpg'));
+        bgImgThumbnailArray.push(require('../../../assets/images/bg_6_thumbnail.jpg'));
+        bgImgThumbnailArray.push(require('../../../assets/images/bg_7_thumbnail.jpg'));
+        bgImgThumbnailArray.push(require('../../../assets/images/bg_8_thumbnail.jpg'));
+        bgImgThumbnailArray.push(require('../../../assets/images/bg_9_thumbnail.jpg'));
+        bgImgThumbnailArray.push(require('../../../assets/images/bg_10_thumbnail.jpg'));
+
 		let bgImg = bgImgArray[this.state.bgImgIndex];
+		let bgImgThumbnail = bgImgThumbnailArray[this.state.bgImgIndex];
+		let mobileImgStyle = {height: '100%', position: 'fixed', top: '0', left: '0'};
+		let desktopImgStyle = {width: '100%', position: 'fixed', top: '0', left: '0'};
+		let retinaImgStyle = {width: '100%', position: 'fixed', top: '-20%', left: '0'};
 
 		if (this.props.location.pathname == '/welcome') {
 			return (
@@ -52,21 +69,31 @@ class RootContainer extends Component {
 			return (
 				<div style={{height: '100%'}}>
 					<Media query={{maxAspectRatio: '16/10'}} render={() => (
-			        	<img src={bgImg} style={{height: '100%', position: 'fixed', top: '0', left: '0'}} />
+                        <ProgressiveImage src={bgImg} placeholder={bgImgThumbnail}>
+                            {image => (
+                                <img style={mobileImgStyle} src={image}/>
+                            )}
+                        </ProgressiveImage>
 			        )}/>
 			        <Media query={{minAspectRatio: '16/10', maxAspectRatio: '21/10'}} render={() => (
-			        	<img src={bgImg} style={{width: '100%', position: 'fixed', top: '0', left: '0'}} />
+						<ProgressiveImage src={bgImg} placeholder={bgImgThumbnail}>
+                            {image => (
+								<img style={desktopImgStyle} src={image}/>
+                            )}
+						</ProgressiveImage>
 			        )}/>
 			        <Media query={{minAspectRatio: '21/10'}} render={() => (
-			        	<img src={bgImg} style={{width: '100%', position: 'fixed', top: '-20%', left: '0'}} />
+						<ProgressiveImage src={bgImg} placeholder={bgImgThumbnail}>
+                            {image => (
+								<img style={retinaImgStyle} src={image}/>
+                            )}
+						</ProgressiveImage>
 			        )}/>
 					<NavBar event={this.props.currentEvent}/>
 					{ this.props.children }
 				</div>
 			);
 		}
-
-		
 	}
 }
 
