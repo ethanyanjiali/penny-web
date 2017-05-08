@@ -45,7 +45,7 @@ class EditEventContainer extends Component {
 	}
 
 	componentWillMount() {
-		if (!this.props.currentEvent) {
+		if (!this.props.currentEvent || this.props.currentEvent.id !== this.props.params.eventId) {
 			this.props.dispatch(eventAction.getEvent(this.props.params.eventId));
 		} else {
 			this.checkAndSetLocalStorage(this.props.params.eventId, this.props.currentEvent.name);

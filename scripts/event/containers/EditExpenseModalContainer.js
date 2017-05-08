@@ -86,7 +86,7 @@ class EditExpenseModalContainer extends Component {
         const isDeleting = this.props.deletingExpenseCount == this.props.count;
 
         const button = (
-            <Icon name='write' onClick={this.handleOpen.bind(this)}/>
+            <Icon name='write' onClick={this.handleOpen.bind(this)} link/>
         );
 
         return (

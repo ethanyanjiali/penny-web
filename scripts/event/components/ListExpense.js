@@ -54,7 +54,7 @@ class ListExpense extends Component {
 						<Table.Cell width={5}>{numeral(expense.amount).format('0.0a')}</Table.Cell>
 					)}/>
 					<Media query={{minWidth: '322px'}} render={() => (
-						<Table.Cell width={4}>{expense.amount}</Table.Cell>
+						<Table.Cell width={5}>{expense.amount}</Table.Cell>
 					)}/>
 					<Table.Cell width={4}>{expense.payor}</Table.Cell>
 					<Table.Cell width={2} textAlign='center'>
@@ -100,7 +100,7 @@ class ListExpense extends Component {
 								<Table.HeaderCell>Description</Table.HeaderCell>
 								<Table.HeaderCell>Amount</Table.HeaderCell>
 								<Table.HeaderCell>Payer</Table.HeaderCell>
-								<Table.HeaderCell textAlign='center'>More</Table.HeaderCell>
+								<Table.HeaderCell textAlign='center'>Edit</Table.HeaderCell>
 							</Table.Row>
 						</Table.Header>
 					)}/>
