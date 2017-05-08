@@ -6,10 +6,12 @@ const initialState = {
 	isCreatingEvent: false,
 	isAddingExpense: false,
 	isUpdatingEvent: false,
+    updatingExpenseCount: null,
 	deletingExpenseCount: null,
 	eventGetError: null,
 	addExpenseError: null,
 	eventCreateError: null,
+    updateExpenseError: null,
 	deleteExpenseError: null
 };
 
@@ -69,10 +71,29 @@ export default function event (state = initialState, action) {
 		        isAddingExpense: false,
 		        addExpenseError: error
 		    });
+        case types.EVENT_UPDATEEXPENSE_START:
+            return Object.assign({}, state, {
+                updatingExpenseCount: count,
+                updateExpenseError: null,
+                updateExpenseErrorCount: null,
+            });
+        case types.EVENT_UPDATEEXPENSE_SUCCESS:
+            return Object.assign({}, state, {
+                updatingExpenseCount: null,
+                updateExpenseError: null,
+                currentEvent: event
+            });
+        case types.EVENT_UPDATEEXPENSE_ERROR:
+            return Object.assign({}, state, {
+                updatingExpenseCount: null,
+                updateExpenseError: error,
+                updateExpenseErrorCount: count,
+            });
 		case types.EVENT_DELETEEXPENSE_START:
 			return Object.assign({}, state, {
 		        deletingExpenseCount: count,
-		        deleteExpenseError: null
+		        deleteExpenseError: null,
+                deleteExpenseErrorCount: null,
 		    });
 		case types.EVENT_DELETEEXPENSE_SUCCESS:
 			return Object.assign({}, state, {
@@ -83,7 +104,8 @@ export default function event (state = initialState, action) {
 		case types.EVENT_DELETEEXPENSE_ERROR:
 			return Object.assign({}, state, {
 		        deletingExpenseCount: null,
-		        deleteExpenseError: error
+		        deleteExpenseError: error,
+                deleteExpenseErrorCount: count,
 		    });
 		
 		case types.EVENT_UPDATE_START:

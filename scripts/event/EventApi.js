@@ -49,6 +49,18 @@ class EventApi {
 			});
 	}
 
+	static updateExpense(eventId, expense, count) {
+        const payload = {
+            expense: expense
+        };
+
+        return request.put(`/event/edit/${eventId}/${count}/update-expense`, payload)
+            .then(response => {
+                logApi(`POST /event/${eventId}/${count}/update-expense`, payload, response);
+                return response.data.event
+            });
+	}
+
 	static deleteExpense(eventId, count) {
 		const payload = {
 			count: count

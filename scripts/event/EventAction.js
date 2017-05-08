@@ -111,6 +111,37 @@ export const addExpense = (eventId, expense) => {
 	};
 };
 
+export const updateExpense = (eventId, expense, count) => {
+    return dispatch => {
+        dispatch({
+            type: types.EVENT_UPDATEEXPENSE_START,
+            payload: {
+                count: count
+            }
+        });
+
+        return EventApi.updateExpense(eventId, expense, count)
+            .then(event => {
+                dispatch({
+                    type: types.EVENT_UPDATEEXPENSE_SUCCESS,
+                    payload: {
+                        event: event
+                    }
+                });
+            })
+            .catch(error => {
+                dispatch({
+                    type: types.EVENT_UPDATEEXPENSE_ERROR,
+                    payload: {
+                        error: parse(error),
+                        count: count
+                    }
+                });
+                return error;
+            });
+    };
+};
+
 export const deleteExpense = (eventId, count) => {
 	return dispatch => {
 		dispatch({
@@ -131,9 +162,10 @@ export const deleteExpense = (eventId, count) => {
 			})
 			.catch(error => {
 				dispatch({
-					type: types.EVENT_DELETEEXPENSEE_ERROR,
+					type: types.EVENT_DELETEEXPENSE_ERROR,
 					payload: {
-						error: parse(error)
+						error: parse(error),
+                        count: count
 					}
 				});
 				return error;

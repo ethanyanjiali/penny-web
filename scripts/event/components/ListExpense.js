@@ -1,7 +1,8 @@
 import React, { Component, PropTypes } from 'react';
-import { Table, Icon, Form, Button, Input, Message, Dropdown, Segment, Header } from 'semantic-ui-react';
+import { Table, Icon, Form, Button, Input, Message, Dropdown, Segment, Header, Modal } from 'semantic-ui-react';
 import Media from 'react-media';
 import numeral from 'numeral';
+import EditExpenseModalContainer from '../containers/EditExpenseModalContainer';
 
 const propTypes = {
 };
@@ -23,12 +24,6 @@ class ListExpense extends Component {
 		});
 	}
 
-	deleteExpense(count) {
-		let result = confirm("Delete this expense?");
-		if (result) {
-			this.props.deleteExpense(count);
-		}
-	}
 
 	renderRows(expenses) {
 		if(!expenses || expenses.length == 0) {
@@ -43,24 +38,32 @@ class ListExpense extends Component {
 
 		let rows = [];
 		let count = 0;
-		let deletingExpenseCount = this.props.deletingExpenseCount;
+
+        const options = this.props.event && this.props.event.people ? this.props.event.people.map(
+                name => {
+                    return {text: name, value: name}
+                }) : [];
 
 		expenses.forEach(expense => {
 			let involved = expense.involved.reduce((result, name) => {return result + name + ', ';}, '');
-			let isDeleting = deletingExpenseCount == count;
 
 			rows.push(
 				<Table.Row key={'main'+count}>
-					<Table.Cell width={4}>{expense.description}</Table.Cell>
+					<Table.Cell width={5}>{expense.description}</Table.Cell>
 					<Media query={{maxWidth: '321px'}} render={() => (
-						<Table.Cell width={4}>{numeral(expense.amount).format('0.0a')}</Table.Cell>
+						<Table.Cell width={5}>{numeral(expense.amount).format('0.0a')}</Table.Cell>
 					)}/>
 					<Media query={{minWidth: '322px'}} render={() => (
 						<Table.Cell width={4}>{expense.amount}</Table.Cell>
 					)}/>
 					<Table.Cell width={4}>{expense.payor}</Table.Cell>
-					<Table.Cell width={2} textAlign='center'><Icon inverted={this.state.rowDetails[count]} circular name='users' onClick={this.toggleDetails.bind(this, count)}/></Table.Cell>
-					<Table.Cell width={2} textAlign='center'><Icon loading={isDeleting} circular name='delete' onClick={this.deleteExpense.bind(this, count)}/></Table.Cell>
+					<Table.Cell width={2} textAlign='center'>
+                        <EditExpenseModalContainer
+                            count={count}
+                            expense={expense}
+                            options={options}
+                        />
+                    </Table.Cell>
 				</Table.Row>
 			);
 
@@ -97,8 +100,7 @@ class ListExpense extends Component {
 								<Table.HeaderCell>Description</Table.HeaderCell>
 								<Table.HeaderCell>Amount</Table.HeaderCell>
 								<Table.HeaderCell>Payer</Table.HeaderCell>
-								<Table.HeaderCell textAlign='center'>Involved</Table.HeaderCell>
-								<Table.HeaderCell textAlign='center'>Delete</Table.HeaderCell>
+								<Table.HeaderCell textAlign='center'>More</Table.HeaderCell>
 							</Table.Row>
 						</Table.Header>
 					)}/>

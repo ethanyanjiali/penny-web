@@ -1,5 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 import { Icon, Form, Button, Input, Message, Dropdown, Segment, Header } from 'semantic-ui-react';
+import ExpenseForm from './ExpenseForm';
 
 const propTypes = {
 };
@@ -20,16 +21,6 @@ class AddExpense extends Component {
 	}
 
   	render() {
-  		let errorMessage = null;
-  		if (this.props.error) {
-	  		errorMessage = (
-	  			<Message error
-			    	header='Failed'
-			    	content={this.props.error}
-			    />
-	  		);
-  		}
-
   		const options = this.props.event && this.props.event.people ? this.props.event.people.map(
   			name => {
   				return {text: name, value: name}
@@ -39,37 +30,14 @@ class AddExpense extends Component {
 
   		if (this.state.visible) {
   			mainContent = (
-  				<Form error={!!this.props.error}>
-					{errorMessage}
-					<Form.Field>
-						<label>Activity</label>
-						<Input placeholder='what is this about' 
-							   name='description'
-							   onChange={this.props.changeFields}/>
-					</Form.Field>
-					<Form.Field>
-						<label>Cost</label>
-						<Input placeholder='how much spent' 
-							   name='amount'
-							   onChange={this.props.changeFields}/>
-					</Form.Field>
-					<Form.Field>
-						<label>People Involved</label>
-						<Dropdown name='involved'
-								  placeholder='Split evenly among these people'
-								  onChange={this.props.changeFields}
-								  fluid multiple selection options={options} />
-					</Form.Field>
-					<Form.Field>
-						<label>Payer</label>
-						<Dropdown name='payor' 
-								  placeholder='who paid this'
-								  onChange={this.props.changeFields} 
-								  fluid selection options={options} />
-					</Form.Field>
-					<Button loading={this.props.isAddingExpense} type='button' basic color='black' content='Add' icon='signup' labelPosition='left' onClick={this.props.AddExpense}/>
-					<Icon style={{float: 'right'}} circular name='hide' onClick={this.toggleVisible.bind(this)}/>
-				</Form>
+  				<ExpenseForm
+					error={this.props.error}
+					changeFields={this.props.changeFields}
+					people={options}
+					addExpense={this.props.addExpense}
+                    isAddingExpense={this.props.isAddingExpense}
+					toggleVisible={this.toggleVisible.bind(this)}
+				/>
   			);
   		} else {
   			mainContent = (

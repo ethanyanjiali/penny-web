@@ -14,9 +14,7 @@ const mapStateToProps = state => {
 		eventGetError: state.event.eventGetError,
 		currentEvent: state.event.currentEvent,
 		isAddingExpense: state.event.isAddingExpense,
-		deletingExpenseCount: state.event.deletingExpenseCount,
 		addExpenseError: state.event.addExpenseError,
-		deleteExpenseError: state.event.deleteExpenseError
 	};
 };
 
@@ -64,10 +62,6 @@ class EditEventContainer extends Component {
 		this.props.dispatch(eventAction.addExpense(this.props.currentEvent.id, this.state.newExpense));
 	}
 
-	deleteExpense(count) {
-		this.props.dispatch(eventAction.deleteExpense(this.props.currentEvent.id, count));
-	}
-
 	render() {
 		if (this.props.isLoadingEvent) {
 			return (
@@ -90,13 +84,11 @@ class EditEventContainer extends Component {
 							<AddExpense event={this.props.currentEvent}
 								isLoadingEvent={this.props.isLoadingEvent}
 								isAddingExpense={this.props.isAddingExpense}
-								AddExpense={this.addExpense.bind(this)}
+								addExpense={this.addExpense.bind(this)}
 								changeFields={this.changeNewExpenseFields.bind(this)}
-								error={this.props.addExpenseError}/>
-							<ListExpense event={this.props.currentEvent}
-								deleteExpense={this.deleteExpense.bind(this)}
-								deletingExpenseCount={this.props.deletingExpenseCount}/>
-							<Settlement event={this.props.currentEvent}/>
+								error={this.props.addExpenseError} />
+							<ListExpense event={this.props.currentEvent} />
+							<Settlement event={this.props.currentEvent} />
 							<ShareLink url={`http://mypenny.co${this.props.location.pathname}`}/>
 						</Grid.Column>
 					</Grid.Row>
