@@ -8,17 +8,27 @@
 }
 
 .blink {
-  -webkit-animation: blink 4s; 
+  -webkit-animation: blink 4s;
           animation: blink 4s;
   -webkit-animation-iteration-count:infinite;
           animation-iteration-count:infinite;
 }
 
 .breath {
-  -webkit-animation: breath 3s; 
+  -webkit-animation: breath 3s;
           animation: breath 3s;
   -webkit-animation-iteration-count:infinite;
           animation-iteration-count:infinite;
+}
+
+.app-banner {
+	position: fixed;
+	bottom: 0;
+	margin-bottom: 10px;
+	flex: 1;
+	display: flex;
+	justify-content: center;
+	width: 100%;
 }
 
 @-webkit-keyframes breath {

@@ -14,9 +14,9 @@ class ShareLink extends Component {
 
   	render() {
   		return (
-  			<Segment style={{marginTop: '5px', backgroundColor: 'rgba(255,255,255,0.7)'}}>
+  			<Segment style={{marginTop: '5px', marginBottom: '20px', backgroundColor: 'rgba(255,255,255,0.7)'}}>
   				<div className='ui action fluid left icon input'>
-					<input 
+					<input
 						type='text'
 						readOnly
 						value={this.props.url}

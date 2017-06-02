@@ -6,6 +6,7 @@ import Media from 'react-media';
 import { Dimmer, Loader, Segment } from 'semantic-ui-react';
 import { browserHistory } from 'react-router';
 import ProgressiveImage from 'react-progressive-image';
+import { Icon, Button } from 'semantic-ui-react';
 
 const mapStateToProps = state => {
 	return {
@@ -18,7 +19,8 @@ class RootContainer extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			bgImgIndex: this.getRandomInt(0, 10)
+			bgImgIndex: this.getRandomInt(0, 10),
+			showOpenInApp: true,
 		}
 	}
 
@@ -26,6 +28,13 @@ class RootContainer extends Component {
 		min = Math.ceil(min);
 		max = Math.floor(max);
 		return Math.floor(Math.random() * (max - min)) + min;
+	}
+
+	handleOpenApp() {
+		window.location.assign("mypenny://");
+		this.setState({
+			showOpenInApp: false,
+		});
 	}
 
 	render() {
@@ -91,6 +100,11 @@ class RootContainer extends Component {
 			        )}/>
 					<NavBar event={this.props.currentEvent}/>
 					{ this.props.children }
+					{ this.state.showOpenInApp && <Media query={{maxWidth: '500px'}} render={() => (
+						<div className='app-banner'>
+							<Button onClick={this.handleOpenApp.bind(this)} size='tiny' content='Open in App' icon='cube' labelPosition='left' color='blue' compact/>
+						</div>
+					)}/> }
 				</div>
 			);
 		}
