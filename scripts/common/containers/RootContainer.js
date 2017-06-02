@@ -31,7 +31,13 @@ class RootContainer extends Component {
 	}
 
 	handleOpenApp() {
-		window.location.assign("mypenny://");
+		const url = this.props.location.pathname;
+		const parts = url && url.split('/') || [];
+		if (parts.length > 3 && parts[1] === 'event' && parts[2] === 'e') {
+			window.location.assign(`mypenny://event/${parts[3]}`);
+		} else {
+			window.location.assign(`mypenny://home`);
+		}
 		this.setState({
 			showOpenInApp: false,
 		});
