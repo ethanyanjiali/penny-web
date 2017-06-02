@@ -30,13 +30,39 @@ class RootContainer extends Component {
 		return Math.floor(Math.random() * (max - min)) + min;
 	}
 
+	getMobileOperatingSystem() {
+  	var userAgent = navigator.userAgent || navigator.vendor || window.opera;
+		if (/android/i.test(userAgent)) {
+			return "Android";
+		}
+		// iOS detection from: http://stackoverflow.com/a/9039885/177710
+		if (/iPad|iPhone|iPod/.test(userAgent) && !window.MSStream) {
+			return "iOS";
+		}
+		return "unknown";
+	}
+
 	handleOpenApp() {
-		const url = this.props.location.pathname;
-		const parts = url && url.split('/') || [];
-		if (parts.length > 3 && parts[1] === 'event' && parts[2] === 'e') {
-			window.location.assign(`mypenny://event/${parts[3]}`);
+		const os = this.getMobileOperatingSystem();
+		if (os === 'iOS') {
+
+			const now = new Date().valueOf();
+			setTimeout(() => {
+		    if (new Date().valueOf() - now > 10000) return;
+		    window.location = 'https://itunes.apple.com/us/app/my-penny/id1243922937?ls=1&mt=8';
+			}, 25);
+
+			const url = this.props.location.pathname;
+			const parts = url && url.split('/') || [];
+			if (parts.length > 3 && parts[1] === 'event' && parts[2] === 'e') {
+				window.location.assign(`mypenny://event/${parts[3]}`);
+			} else {
+				window.location.assign(`mypenny://home`);
+			}
+		} else if (os === 'Android') {
+			alert('Android version is coming. Send us a feedback on top right corner to check the lastest progress!')
 		} else {
-			window.location.assign(`mypenny://home`);
+			alert('Sorry your operating system is not supported. Send us a feedback on top right corner to request a feature!')
 		}
 		this.setState({
 			showOpenInApp: false,
