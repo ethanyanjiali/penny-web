@@ -30,8 +30,17 @@ class RootContainer extends Component {
 		return Math.floor(Math.random() * (max - min)) + min;
 	}
 
+	getBrowser() {
+		const userAgent = navigator.userAgent || navigator.vendor || window.opera;
+		if (/micromessenger/.test(userAgent.toLowerCase())) {
+			return 'Wechat';
+		} else {
+			return 'Normal';
+		}
+	}
+
 	getMobileOperatingSystem() {
-  	var userAgent = navigator.userAgent || navigator.vendor || window.opera;
+  	const userAgent = navigator.userAgent || navigator.vendor || window.opera;
 		if (/android/i.test(userAgent)) {
 			return "Android";
 		}
@@ -44,13 +53,13 @@ class RootContainer extends Component {
 
 	handleOpenApp() {
 		const os = this.getMobileOperatingSystem();
+		const browser = this.getBrowser();
+
 		if (os === 'iOS') {
 
-			const now = new Date().valueOf();
-			setTimeout(() => {
-		    if (new Date().valueOf() - now > 10000) return;
-		    window.location = 'https://itunes.apple.com/us/app/my-penny/id1243922937?ls=1&mt=8';
-			}, 25);
+			if (browser === 'Wechat') {
+				alert('Due to the restriction from Wechat, you need to open this page in Safari first. You are now redirecting to App store.')
+			}
 
 			const url = this.props.location.pathname;
 			const parts = url && url.split('/') || [];
@@ -59,6 +68,10 @@ class RootContainer extends Component {
 			} else {
 				window.location.assign(`mypenny://home`);
 			}
+			setTimeout(() => {
+				const goToStore = confirm('Open in App Store?');
+		    if (goToStore) window.location = 'https://itunes.apple.com/us/app/my-penny/id1243922937?ls=1&mt=8';
+			}, 500);
 		} else if (os === 'Android') {
 			alert('Android version is coming. Send us a feedback on top right corner to check the lastest progress!')
 		} else {
