@@ -51,6 +51,16 @@ class RootContainer extends Component {
 		return "unknown";
 	}
 
+	goToApp() {
+		const url = this.props.location.pathname;
+		const parts = url && url.split('/') || [];
+		if (parts.length > 3 && parts[1] === 'event' && parts[2] === 'e') {
+			window.location.assign(`mypenny://event/${parts[3]}`);
+		} else {
+			window.location.assign(`mypenny://home`);
+		}
+	}
+
 	handleOpenApp() {
 		const os = this.getMobileOperatingSystem();
 		const browser = this.getBrowser();
@@ -58,22 +68,28 @@ class RootContainer extends Component {
 		if (os === 'iOS') {
 
 			if (browser === 'Wechat') {
-				alert('Due to the restriction from Wechat, you need to open this page in Safari first. You are now redirecting to App store.')
+				alert('Due to the restriction from Wechat, you need to open this page in Safari first. You are now redirecting to App Store.')
 			}
 
-			const url = this.props.location.pathname;
-			const parts = url && url.split('/') || [];
-			if (parts.length > 3 && parts[1] === 'event' && parts[2] === 'e') {
-				window.location.assign(`mypenny://event/${parts[3]}`);
-			} else {
-				window.location.assign(`mypenny://home`);
-			}
+			this.goToApp();
 			setTimeout(() => {
-				const goToStore = confirm('Open in App Store?');
-		    if (goToStore) window.location = 'https://itunes.apple.com/us/app/my-penny/id1243922937?ls=1&mt=8';
+				if (document.hasFocus()) {
+					const goToStore = confirm('Open in App Store?');
+			    if (goToStore) window.location = 'https://itunes.apple.com/us/app/my-penny/id1243922937?ls=1&mt=8';
+				}
 			}, 500);
 		} else if (os === 'Android') {
-			alert('Android version is coming. Send us a feedback on top right corner to check the lastest progress!')
+			if (browser === 'Wechat') {
+				alert('Due to the restriction from Wechat, you need to open this page in Chrome first. You are now redirecting to Play Store.')
+			}
+
+			this.goToApp();
+			setTimeout(() => {
+				if (document.hasFocus()) {
+					const goToStore = confirm('Open in Play Store?');
+			    if (goToStore) window.location = 'https://play.google.com/store/apps/details?id=co.mypenny';
+				}
+			}, 800);
 		} else {
 			alert('Sorry your operating system is not supported. Send us a feedback on top right corner to request a feature!')
 		}
@@ -96,16 +112,16 @@ class RootContainer extends Component {
 		bgImgArray.push(require('../../../assets/images/bg_9.jpg'));
 		bgImgArray.push(require('../../../assets/images/bg_10.jpg'));
 
-        bgImgThumbnailArray.push(require('../../../assets/images/bg_1_thumbnail.jpg'));
-        bgImgThumbnailArray.push(require('../../../assets/images/bg_2_thumbnail.jpg'));
-        bgImgThumbnailArray.push(require('../../../assets/images/bg_3_thumbnail.jpg'));
-        bgImgThumbnailArray.push(require('../../../assets/images/bg_4_thumbnail.jpg'));
-        bgImgThumbnailArray.push(require('../../../assets/images/bg_5_thumbnail.jpg'));
-        bgImgThumbnailArray.push(require('../../../assets/images/bg_6_thumbnail.jpg'));
-        bgImgThumbnailArray.push(require('../../../assets/images/bg_7_thumbnail.jpg'));
-        bgImgThumbnailArray.push(require('../../../assets/images/bg_8_thumbnail.jpg'));
-        bgImgThumbnailArray.push(require('../../../assets/images/bg_9_thumbnail.jpg'));
-        bgImgThumbnailArray.push(require('../../../assets/images/bg_10_thumbnail.jpg'));
+		bgImgThumbnailArray.push(require('../../../assets/images/bg_1_thumbnail.jpg'));
+		bgImgThumbnailArray.push(require('../../../assets/images/bg_2_thumbnail.jpg'));
+		bgImgThumbnailArray.push(require('../../../assets/images/bg_3_thumbnail.jpg'));
+		bgImgThumbnailArray.push(require('../../../assets/images/bg_4_thumbnail.jpg'));
+		bgImgThumbnailArray.push(require('../../../assets/images/bg_5_thumbnail.jpg'));
+		bgImgThumbnailArray.push(require('../../../assets/images/bg_6_thumbnail.jpg'));
+		bgImgThumbnailArray.push(require('../../../assets/images/bg_7_thumbnail.jpg'));
+		bgImgThumbnailArray.push(require('../../../assets/images/bg_8_thumbnail.jpg'));
+		bgImgThumbnailArray.push(require('../../../assets/images/bg_9_thumbnail.jpg'));
+		bgImgThumbnailArray.push(require('../../../assets/images/bg_10_thumbnail.jpg'));
 
 		let bgImg = bgImgArray[this.state.bgImgIndex];
 		let bgImgThumbnail = bgImgThumbnailArray[this.state.bgImgIndex];
