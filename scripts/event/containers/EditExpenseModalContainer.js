@@ -33,7 +33,7 @@ class EditExpenseModalContainer extends Component {
     deleteExpense() {
         let result = confirm("Delete this expense?");
         if (result) {
-            this.props.dispatch(eventAction.deleteExpense(this.props.currentEvent.id, this.props.count))
+            this.props.dispatch(eventAction.deleteExpense(this.props.currentEvent.id, this.props.expense.id))
                 .then(() => {
                     this.setState({
                         modalOpen: false

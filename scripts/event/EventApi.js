@@ -15,7 +15,7 @@ class EventApi {
 		const payload = {
 			event: event
 		};
-		
+
 		return request.post(`/event/create`, payload)
 			.then(response => {
 				logApi(`POST /event/create`, payload, response);
@@ -29,7 +29,7 @@ class EventApi {
 		};
 
 		console.log(payload);
-		
+
 		return request.post(`/event/edit/${eventId}`, payload)
 			.then(response => {
 				logApi(`POST /event/edit/${eventId}`, payload, response);
@@ -41,7 +41,7 @@ class EventApi {
 		const payload = {
 			expense: expense
 		};
-		
+
 		return request.post(`/event/edit/${eventId}/add-expense`, payload)
 			.then(response => {
 				logApi(`POST /event/${eventId}/add-expense`, payload, response);
@@ -61,12 +61,12 @@ class EventApi {
             });
 	}
 
-	static deleteExpense(eventId, count) {
+	static deleteExpense(eventId, expenseId) {
 		const payload = {
-			count: count
+			expenseId,
 		};
-		
-		return request.post(`/event/delete/${eventId}/${count}`, payload)
+
+		return request.post(`/event/delete/${eventId}/${expenseId}`, payload)
 			.then(response => {
 				logApi(`POST /event/${eventId}/delete-expense`, payload, response);
 				return response.data.event
