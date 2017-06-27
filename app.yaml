@@ -12,11 +12,6 @@ env: flex
 manual_scaling:
   instances: 1
 
-resources:
-  cpu: .5
-  memory_gb: .18
-  disk_size_gb: 10
-
 handlers:
 - url: /.*
   script: server.js
