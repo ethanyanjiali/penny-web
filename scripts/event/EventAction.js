@@ -111,7 +111,7 @@ export const addExpense = (eventId, expense) => {
 	};
 };
 
-export const updateExpense = (eventId, expense, count) => {
+export const updateExpense = (eventId, expense, count, expenseId) => {
     return dispatch => {
         dispatch({
             type: types.EVENT_UPDATEEXPENSE_START,
@@ -120,7 +120,7 @@ export const updateExpense = (eventId, expense, count) => {
             }
         });
 
-        return EventApi.updateExpense(eventId, expense, count)
+        return EventApi.updateExpense(eventId, expense, count, expenseId)
             .then(event => {
                 dispatch({
                     type: types.EVENT_UPDATEEXPENSE_SUCCESS,

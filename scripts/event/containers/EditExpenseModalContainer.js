@@ -21,13 +21,13 @@ const mapStateToProps = state => {
 
 class EditExpenseModalContainer extends Component {
 
-    constructor() {
-        super();
+    constructor(props) {
+        super(props);
         this.state = {
             modalOpen: false,
-            expense: null,
+            expense: Object.assign({}, props.expense),
             error: null
-        }
+        };
     };
 
     deleteExpense() {
@@ -46,7 +46,8 @@ class EditExpenseModalContainer extends Component {
         this.props.dispatch(eventAction.updateExpense(
             this.props.currentEvent.id,
             this.state.expense || this.props.expense || {},
-            this.props.count
+            0, // updating by index of expense is deprecated
+            this.props.expense.id
         ));
     }
 

@@ -49,14 +49,14 @@ class EventApi {
 			});
 	}
 
-	static updateExpense(eventId, expense, count) {
+	static updateExpense(eventId, expense, count, expenseId) {
         const payload = {
             expense: expense
         };
 
-        return request.put(`/event/edit/${eventId}/${count}/update-expense`, payload)
+        return request.put(`/event/edit/${eventId}/${count}/update-expense/${expenseId}`, payload)
             .then(response => {
-                logApi(`POST /event/${eventId}/${count}/update-expense`, payload, response);
+                logApi(`POST /event/${eventId}/${count}/update-expense/${expenseId}`, payload, response);
                 return response.data.event
             });
 	}
