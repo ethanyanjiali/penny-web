@@ -182,7 +182,7 @@ class RootContainer extends Component {
 
 	render() {
 		const browser = this.getBrowser();
-		const isWechat = browser === 'Wechat' || true;
+		const isWechat = browser === 'Wechat';
 		return isWechat ? this.renderWechatHelper() : this.renderBackground();
 	}
 }
