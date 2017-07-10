@@ -2,7 +2,8 @@ var path = require('path');
 var webpack = require('webpack');
 var express = require('express');
 var config = require('./webpack.config');
-const PORT = process.env.PORT || 3000;
+
+const PORT = process.env.PORT || 80;
 
 var app = express();
 var compiler = webpack(config);
@@ -21,4 +22,4 @@ app.listen(PORT, function(err) {
   }
 
   console.log('Listening at http://localhost:' + PORT);
-})
+});

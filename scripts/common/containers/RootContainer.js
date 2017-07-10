@@ -40,7 +40,7 @@ class RootContainer extends Component {
 	}
 
 	getMobileOperatingSystem() {
-  	const userAgent = navigator.userAgent || navigator.vendor || window.opera;
+		const userAgent = navigator.userAgent || navigator.vendor || window.opera;
 		if (/android/i.test(userAgent)) {
 			return "Android";
 		}
@@ -75,7 +75,7 @@ class RootContainer extends Component {
 			setTimeout(() => {
 				if (document.hasFocus()) {
 					const goToStore = confirm('Open in App Store?');
-			    if (goToStore) window.location = 'https://itunes.apple.com/us/app/my-penny/id1243922937?ls=1&mt=8';
+					if (goToStore) window.location = 'https://itunes.apple.com/us/app/my-penny/id1243922937?ls=1&mt=8';
 				}
 			}, 500);
 		} else if (os === 'Android') {
@@ -87,7 +87,7 @@ class RootContainer extends Component {
 			setTimeout(() => {
 				if (document.hasFocus()) {
 					const goToStore = confirm('Open in Play Store?');
-			    if (goToStore) window.location = 'https://play.google.com/store/apps/details?id=co.mypenny';
+					if (goToStore) window.location = 'https://play.google.com/store/apps/details?id=co.mypenny';
 				}
 			}, 800);
 		} else {
@@ -98,7 +98,7 @@ class RootContainer extends Component {
 		});
 	}
 
-	render() {
+	renderBackground() {
 		let bgImgArray = [];
 		let bgImgThumbnailArray = [];
 		bgImgArray.push(require('../../../assets/images/bg_1.jpg'));
@@ -125,50 +125,65 @@ class RootContainer extends Component {
 
 		let bgImg = bgImgArray[this.state.bgImgIndex];
 		let bgImgThumbnail = bgImgThumbnailArray[this.state.bgImgIndex];
-		let mobileImgStyle = {height: '100%', position: 'fixed', top: '0', left: '0'};
-		let desktopImgStyle = {width: '100%', position: 'fixed', top: '0', left: '0'};
-		let retinaImgStyle = {width: '100%', position: 'fixed', top: '-20%', left: '0'};
+		let mobileImgStyle = { height: '100%', position: 'fixed', top: '0', left: '0' };
+		let desktopImgStyle = { width: '100%', position: 'fixed', top: '0', left: '0' };
+		let retinaImgStyle = { width: '100%', position: 'fixed', top: '-20%', left: '0' };
 
 		if (this.props.location.pathname == '/welcome') {
 			return (
-				<div style={{height: '100%'}}>
-					{ this.props.children }
+				<div style={{ height: '100%' }}>
+					{this.props.children}
 				</div>
 			);
 		} else {
 			return (
-				<div style={{height: '100%'}}>
-					<Media query={{maxAspectRatio: '16/10'}} render={() => (
-                        <ProgressiveImage src={bgImg} placeholder={bgImgThumbnail}>
-                            {image => (
-                                <img style={mobileImgStyle} src={image}/>
-                            )}
-                        </ProgressiveImage>
-			        )}/>
-			        <Media query={{minAspectRatio: '16/10', maxAspectRatio: '21/10'}} render={() => (
+				<div style={{ height: '100%' }}>
+					<Media query={{ maxAspectRatio: '16/10' }} render={() => (
 						<ProgressiveImage src={bgImg} placeholder={bgImgThumbnail}>
-                            {image => (
-								<img style={desktopImgStyle} src={image}/>
-                            )}
+							{image => (
+								<img style={mobileImgStyle} src={image} />
+							)}
 						</ProgressiveImage>
-			        )}/>
-			        <Media query={{minAspectRatio: '21/10'}} render={() => (
+					)} />
+					<Media query={{ minAspectRatio: '16/10', maxAspectRatio: '21/10' }} render={() => (
 						<ProgressiveImage src={bgImg} placeholder={bgImgThumbnail}>
-                            {image => (
-								<img style={retinaImgStyle} src={image}/>
-                            )}
+							{image => (
+								<img style={desktopImgStyle} src={image} />
+							)}
 						</ProgressiveImage>
-			        )}/>
-					<NavBar event={this.props.currentEvent}/>
-					{ this.props.children }
-					{ this.state.showOpenInApp && <Media query={{maxWidth: '500px'}} render={() => (
+					)} />
+					<Media query={{ minAspectRatio: '21/10' }} render={() => (
+						<ProgressiveImage src={bgImg} placeholder={bgImgThumbnail}>
+							{image => (
+								<img style={retinaImgStyle} src={image} />
+							)}
+						</ProgressiveImage>
+					)} />
+					<NavBar event={this.props.currentEvent} />
+					{this.props.children}
+					{this.state.showOpenInApp && <Media query={{ maxWidth: '500px' }} render={() => (
 						<div className='app-banner'>
-							<Button onClick={this.handleOpenApp.bind(this)} size='tiny' content='Open in App' icon='cube' labelPosition='left' color='blue' compact/>
+							<Button onClick={this.handleOpenApp.bind(this)} size='tiny' content='Open in App' icon='cube' labelPosition='left' color='blue' compact />
 						</div>
-					)}/> }
+					)} />}
 				</div>
 			);
 		}
+	}
+
+	renderWechatHelper() {
+		const helperImage = require('../../../assets/images/wechat.jpg');
+		return (
+			<div style={{flex: 1}}>
+				<img style={{height: '80%', width: '80%', margin: 'auto', display: 'block', marginTop: '20px'}} src={helperImage} />
+			</div>
+		);
+	}
+
+	render() {
+		const browser = this.getBrowser();
+		const isWechat = browser === 'Wechat' || true;
+		return isWechat ? this.renderWechatHelper() : this.renderBackground();
 	}
 }
 
