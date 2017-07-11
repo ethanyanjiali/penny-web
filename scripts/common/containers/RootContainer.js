@@ -173,11 +173,21 @@ class RootContainer extends Component {
 
 	renderWechatHelper() {
 		const helperImage = require('../../../assets/images/wechat.jpg');
-		return (
-			<div style={{flex: 1}}>
-				<img style={{height: '80%', width: '80%', margin: 'auto', display: 'block', marginTop: '20px'}} src={helperImage} />
-			</div>
-		);
+		const helperImageAndriod = require('../../../assets/images/wechat_android,jpg');
+		if (this.getMobileOperatingSystem === 'iOS') {
+			return (
+				<div style={{flex: 1}}>
+					<img style={{height: '80%', width: '80%', margin: 'auto', display: 'block', marginTop: '20px'}} src={helperImage} />
+				</div>
+			);
+		} else {
+			return (
+				<div style={{flex: 1}}>
+					<img style={{height: '80%', width: '80%', margin: 'auto', display: 'block', marginTop: '20px'}} src={helperImageAndriod} />
+				</div>
+			);
+		}
+
 	}
 
 	render() {
