@@ -174,7 +174,7 @@ class RootContainer extends Component {
 	renderWechatHelper() {
 		const helperImage = require('../../../assets/images/wechat.jpg');
 		const helperImageAndriod = require('../../../assets/images/wechat_android.jpg');
-		if (false && this.getMobileOperatingSystem === 'iOS') {
+		if (this.getMobileOperatingSystem === 'iOS') {
 			return (
 				<div style={{flex: 1}}>
 					<img style={{height: '80%', width: '80%', margin: 'auto', display: 'block', marginTop: '20px'}} src={helperImage} />
@@ -192,7 +192,7 @@ class RootContainer extends Component {
 
 	render() {
 		const browser = this.getBrowser();
-		const isWechat = true || browser === 'Wechat';
+		const isWechat = browser === 'Wechat';
 		return isWechat ? this.renderWechatHelper() : this.renderBackground();
 	}
 }
