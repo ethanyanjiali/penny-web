@@ -48,7 +48,11 @@ class EditExpenseModalContainer extends Component {
             this.state.expense || this.props.expense || {},
             0, // updating by index of expense is deprecated
             this.props.expense.id
-        ));
+        )).then(() => {
+            this.setState({
+                modalOpen: false,
+            });
+        });
     }
 
     handleOpen() {

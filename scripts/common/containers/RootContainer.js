@@ -21,7 +21,7 @@ class RootContainer extends Component {
 		this.state = {
 			bgImgIndex: this.getRandomInt(0, 10),
 			showOpenInApp: true,
-		}
+		};
 	}
 
 	getRandomInt(min, max) {
@@ -68,7 +68,7 @@ class RootContainer extends Component {
 		if (os === 'iOS') {
 
 			if (browser === 'Wechat') {
-				alert('Due to the restriction from Wechat, you need to open this page in Safari first. You are now redirecting to App Store.')
+				alert('Due to the restriction from Wechat, you need to open this page in Safari first. You are now redirecting to App Store.');
 			}
 
 			this.goToApp();
@@ -80,7 +80,7 @@ class RootContainer extends Component {
 			}, 500);
 		} else if (os === 'Android') {
 			if (browser === 'Wechat') {
-				alert('Due to the restriction from Wechat, you need to open this page in Chrome first. You are now redirecting to Play Store.')
+				alert('Due to the restriction from Wechat, you need to open this page in Chrome first. You are now redirecting to Play Store.');
 			}
 
 			this.goToApp();
@@ -91,7 +91,7 @@ class RootContainer extends Component {
 				}
 			}, 800);
 		} else {
-			alert('Sorry your operating system is not supported. Send us a feedback on top right corner to request a feature!')
+			alert('Sorry your operating system is not supported. Send us a feedback on top right corner to request a feature!');
 		}
 		this.setState({
 			showOpenInApp: false,
