@@ -18,14 +18,14 @@ addLocaleData([...zhCNLocaleData, ...ruLocaleData]);
 const getLocale = (acceptLanguage) => {
 	if (_.isString(acceptLanguage)) {
 		return acceptLanguage && acceptLanguage.split(',') && acceptLanguage.split(',')[0]
-	} else if (window.navigator.languages != undefined) {
-		return window.navigator.languages[0];
-	} else if (window.navigator.language != undefined) {
-		return window.navigator.language;
-	} else if (window.navigator.userLanguage != undefined) {
-		return window.navigator.userLanguage;
-	} else if (window.navigator.systemLanguage != undefined) {
-		return window.navigator.systemLanguage;
+	} else if (navigator.languages != undefined) {
+		return navigator.languages[0];
+	} else if (navigator.language != undefined) {
+		return navigator.language;
+	} else if (navigator.userLanguage != undefined) {
+		return navigator.userLanguage;
+	} else if (navigator.systemLanguage != undefined) {
+		return navigator.systemLanguage;
 	}
 	return 'en';
 };
