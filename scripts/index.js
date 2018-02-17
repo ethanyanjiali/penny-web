@@ -7,9 +7,11 @@ import store from './store';
 import routes from './RootRoutes';
 import '../styles/index.scss';
 import zhCN from './i18n/zh-CN';
+import ru from './i18n/ru';
 import zhCNLocaleData from 'react-intl/locale-data/zh';
+import ruLocaleData from 'react-intl/locale-data/ru';
 
-addLocaleData([ ...zhCNLocaleData ]);
+addLocaleData([ ...zhCNLocaleData, ...ruLocaleData ]);
 
 const getLocale = () => {
 	if (navigator == undefined) {
@@ -26,8 +28,10 @@ const getTranslation = () => {
 	const locale = getLocale();
 	switch (locale) {
 		case 'zh-CN':
-			console.log(zhCN);
+		case 'zh':
 			return zhCN;
+		case 'ru':
+			return ru;
 		default:
 			return {};
 	}

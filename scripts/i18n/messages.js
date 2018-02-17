@@ -179,7 +179,11 @@ export const welcome = defineMessages({
         history: {
             id: 'app.welcome.buttons.history',
             defaultMessage: 'Event History',
-        }
+        },
+        createEvent:{
+            id: 'app.welcome.buttons.createEvent',
+            defaultMessage: 'Create An Event',
+        },
     }
 });
 

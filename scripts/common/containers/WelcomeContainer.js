@@ -33,7 +33,7 @@ class WelcomeContainer extends Component {
 					    <div className='welcome-section' style={{top:'50%', marginTop:'-100px', textAlign:'center', position:'absolute', width:'100%'}}>
 							<Image style={{margin:'auto'}} src={require('../../../assets/images/penny.png')} size='small'/>
 							<div style={{marginTop: '20px'}}>{ formatMessage(messages.welcome.misc.line1) }</div>
-							<Button onClick={this.goToCreation.bind(this)} style={{marginTop: '40px'}} basic color='black' content='Create An Event' icon='signup' labelPosition='left'/>
+							<Button onClick={this.goToCreation.bind(this)} style={{marginTop: '40px'}} basic color='black' content={ formatMessage(messages.welcome.buttons.createEvent) } icon='signup' labelPosition='left'/>
 							<div style={{marginTop: '20px', display: 'block'}}><Link to='history'><Icon name='history' color='grey'/><span style={{color: 'grey'}}>{ formatMessage(messages.welcome.buttons.history) }</span></Link></div>
 						</div>
 					)}/>
@@ -41,7 +41,7 @@ class WelcomeContainer extends Component {
 					    <div className='welcome-section' style={{top:'50%', marginTop:'-150px', textAlign:'center', position:'absolute', width:'100%'}}>
 							<Image style={{margin:'auto'}} src={require('../../../assets/images/penny.png')} size='medium'/>
 							<div style={{marginTop: '20px'}}>{ formatMessage(messages.welcome.misc.line1) }</div>
-							<Button onClick={this.goToCreation.bind(this)} style={{marginTop: '40px'}} basic color='black' content='Create An Event' icon='signup' labelPosition='left'/>
+							<Button onClick={this.goToCreation.bind(this)} style={{marginTop: '40px'}} basic color='black' content={ formatMessage(messages.welcome.buttons.createEvent) } icon='signup' labelPosition='left'/>
 							<div style={{marginTop: '20px', display: 'block'}}><Link to='history'><Icon name='history' color='grey'/><span style={{color: 'grey'}}>{ formatMessage(messages.welcome.buttons.history) }</span></Link></div>
 						</div>
 					)}/>
