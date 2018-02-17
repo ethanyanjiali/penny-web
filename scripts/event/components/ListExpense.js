@@ -1,6 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 import { Table, Icon, Form, Button, Input, Message, Dropdown, Segment, Header, Modal } from 'semantic-ui-react';
 import Media from 'react-media';
+import _ from 'lodash';
 import numeral from 'numeral';
 import { injectIntl } from 'react-intl';
 import * as messages from '../../i18n/messages';
@@ -15,15 +16,19 @@ class ListExpense extends Component {
 		super(props);
 		this.state = {
 			rowDetails: {}
-		}
+		};
 	}
 
-	toggleDetails(count) {
-		let rowDetails = Object.assign({}, this.state.rowDetails);
-		rowDetails[count] = !rowDetails[count];
-		this.setState({
-			rowDetails: rowDetails
-		});
+	toggleDetails() {
+		const result = {};
+		if (this.props.event.expenses && this.props.event.expenses.length > 0) {
+			const newRowDetails = _.forEach(this.props.event.expenses, (value, index) => {
+				result[index] = !Boolean(this.state.rowDetails[0]);
+			});
+			this.setState({
+				rowDetails: result
+			});
+		}
 	}
 
 
@@ -48,7 +53,7 @@ class ListExpense extends Component {
                 }) : [];
 
 		expenses.forEach(expense => {
-			let involved = expense.involved.reduce((result, name) => {return result + name + ', ';}, '');
+			let involved = expense.involved && expense.involved.join(', ');
 
 			rows.push(
 				<Table.Row key={'main'+count}>
@@ -60,20 +65,32 @@ class ListExpense extends Component {
 						<Table.Cell width={5}>{expense.amount}</Table.Cell>
 					)}/>
 					<Table.Cell width={4}>{expense.payor}</Table.Cell>
-					<Table.Cell width={2} textAlign='center'>
-                        <EditExpenseModalContainer
-                            count={count}
-                            expense={expense}
-                            options={options}
-                        />
-                    </Table.Cell>
+					<Media query={{maxWidth: '800px'}} render={() => (
+						<Table.Cell width={2} textAlign='center'>
+							<EditExpenseModalContainer
+								count={count}
+								expense={expense}
+								options={options}
+							/>
+						</Table.Cell>
+					)}/>
+					<Media query={{minWidth: '801px'}} render={() => (
+						<Table.Cell width={2} textAlign='left'>
+							<EditExpenseModalContainer
+								count={count}
+								expense={expense}
+								options={options}
+							/>
+						</Table.Cell>
+					)}/>
+					
 				</Table.Row>
 			);
 
 			if (this.state.rowDetails[count]) {
 				rows.push(
 					<Table.Row key={'sub'+count}>
-						<Table.Cell colSpan='5'>
+						<Table.Cell colSpan='4'>
 						<b>{ formatMessage(messages.expenseForm.labels.involved) }:</b> {involved}
 						</Table.Cell>
 					</Table.Row>
@@ -94,7 +111,10 @@ class ListExpense extends Component {
   		return (
   			<Segment style={{textAlign:'center', marginTop: '20px', backgroundColor: 'rgba(255,255,255,0.8)'}}>
 				<Media query={{maxWidth: '800px'}} render={() => (
-					<Header style={{borderBottom: '1px solid rgba(0,0,0,.1)', paddingBottom: '7px', marginBottom: '0px'}} as='h4'>{ formatMessage(messages.expenseList.misc.allExpenses) }</Header>
+					<Header style={{borderBottom: '1px solid rgba(0,0,0,.1)', paddingBottom: '7px', marginBottom: '0px'}} as='h4'>
+						{ formatMessage(messages.expenseList.misc.allExpenses) }
+						<Icon name='users icon' style={{ position: 'absolute', marginRight: 0, right: 14, width: '10%', fontSize: '1em' }} onClick={ this.toggleDetails.bind(this) } link/>
+					</Header>
 				)}/>
 				<Table unstackable compact fixed basic='very' style={{marginTop:'0px'}}>
 					<Media query={{minWidth: '801px'}} render={() => (
@@ -103,7 +123,10 @@ class ListExpense extends Component {
 								<Table.HeaderCell>{ formatMessage(messages.expenseForm.labels.activity) }</Table.HeaderCell>
 								<Table.HeaderCell>{ formatMessage(messages.expenseForm.labels.cost) }</Table.HeaderCell>
 								<Table.HeaderCell>{ formatMessage(messages.expenseForm.labels.payer) }</Table.HeaderCell>
-								<Table.HeaderCell textAlign='center'>{ formatMessage(messages.expenseList.buttons.edit) }</Table.HeaderCell>
+								<Table.HeaderCell textAlign='left'>
+									{ formatMessage(messages.expenseList.buttons.edit) }
+									<Icon name='users icon' style={{ position: 'absolute', right: 14 }} onClick={ this.toggleDetails.bind(this) } link/>
+								</Table.HeaderCell>
 							</Table.Row>
 						</Table.Header>
 					)}/>

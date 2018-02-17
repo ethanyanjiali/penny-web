@@ -18,7 +18,7 @@ addLocaleData([...zhCNLocaleData, ...ruLocaleData]);
 
 const getLocale = (acceptLanguage) => {
 	if (_.isString(acceptLanguage)) {
-		return acceptLanguage && acceptLanguage.split(',') && acceptLanguage.split(',')[0]
+		return acceptLanguage && acceptLanguage.split(',') && acceptLanguage.split(',')[0];
 	} else if (navigator.languages != undefined) {
 		return navigator.languages[0];
 	} else if (navigator.language != undefined) {
