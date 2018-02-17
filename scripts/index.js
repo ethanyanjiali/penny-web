@@ -12,6 +12,7 @@ import ru from './i18n/ru';
 import zhCNLocaleData from 'react-intl/locale-data/zh';
 import ruLocaleData from 'react-intl/locale-data/ru';
 import { API_HOST } from './config';
+import 'whatwg-fetch';
 
 addLocaleData([...zhCNLocaleData, ...ruLocaleData]);
 

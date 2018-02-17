@@ -5,6 +5,7 @@ var appPath = __dirname;
  
 module.exports = {
   entry: [
+    'whatwg-fetch',
     './scripts/index' // Your appʼs entry point
   ],
   output: { 
