@@ -1,4 +1,6 @@
 import React, { Component, PropTypes } from 'react';
+import { injectIntl } from 'react-intl';
+import * as messages from '../../i18n/messages';
 import { Icon, Form, Button, Input, Message, Dropdown, Segment, Header } from 'semantic-ui-react';
 import ExpenseForm from './ExpenseForm';
 
@@ -21,6 +23,7 @@ class AddExpense extends Component {
 	}
 
   	render() {
+		const { intl: { formatMessage } } = this.props;
   		const options = this.props.event && this.props.event.people ? this.props.event.people.map(
   			name => {
   				return {text: name, value: name}
@@ -41,7 +44,7 @@ class AddExpense extends Component {
   			);
   		} else {
   			mainContent = (
-  				<Button fluid type='button' basic color='black' content='Add an expense' icon='signup' labelPosition='left' onClick={this.toggleVisible.bind(this)}/>
+  				<Button fluid type='button' basic color='black' content={ formatMessage(messages.expenseForm.buttons.addAnExpense) } icon='signup' labelPosition='left' onClick={this.toggleVisible.bind(this)}/>
   			);
   		}
 
@@ -61,4 +64,4 @@ class AddExpense extends Component {
 
 }
 
-export default AddExpense;
+export default injectIntl(AddExpense);

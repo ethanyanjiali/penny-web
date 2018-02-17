@@ -1,6 +1,8 @@
 import React, { Component, PropTypes } from 'react';
 import NavBar from '../components/NavBar';
 import { connect } from 'react-redux';
+import { injectIntl } from 'react-intl';
+import * as messages from '../../i18n/messages';
 import * as userAction from '../../user/UserAction';
 import Media from 'react-media';
 import { Dimmer, Loader, Segment } from 'semantic-ui-react';
@@ -64,34 +66,35 @@ class RootContainer extends Component {
 	handleOpenApp() {
 		const os = this.getMobileOperatingSystem();
 		const browser = this.getBrowser();
+		const { intl: { formatMessage } } = this.props;
 
 		if (os === 'iOS') {
 
 			if (browser === 'Wechat') {
-				alert('Due to the restriction from Wechat, you need to open this page in Safari first. You are now redirecting to App Store.');
+				alert(formatMessage(messages.root.misc.wechatIos));
 			}
 
 			this.goToApp();
 			setTimeout(() => {
 				if (document.hasFocus()) {
-					const goToStore = confirm('Open in App Store?');
+					const goToStore = confirm(formatMessage(messages.root.misc.appStore));
 					if (goToStore) window.location = 'https://itunes.apple.com/us/app/my-penny/id1243922937?ls=1&mt=8';
 				}
 			}, 500);
 		} else if (os === 'Android') {
 			if (browser === 'Wechat') {
-				alert('Due to the restriction from Wechat, you need to open this page in Chrome first. You are now redirecting to Play Store.');
+				alert(formatMessage(messages.root.misc.wechatAndroid));
 			}
 
 			this.goToApp();
 			setTimeout(() => {
 				if (document.hasFocus()) {
-					const goToStore = confirm('Open in Play Store?');
+					const goToStore = confirm(formatMessage(messages.root.misc.playStore));
 					if (goToStore) window.location = 'https://play.google.com/store/apps/details?id=co.mypenny';
 				}
 			}, 800);
 		} else {
-			alert('Sorry your operating system is not supported. Send us a feedback on top right corner to request a feature!');
+			alert(formatMessage(messages.root.misc.notSupported));
 		}
 		this.setState({
 			showOpenInApp: false,
@@ -197,4 +200,4 @@ class RootContainer extends Component {
 	}
 }
 
-export default connect(mapStateToProps)(RootContainer);
+export default injectIntl(connect(mapStateToProps)(RootContainer));

@@ -2,6 +2,8 @@ import React, { Component, PropTypes } from 'react';
 import { Table, Icon, Form, Button, Input, Message, Dropdown, Segment, Header, Modal } from 'semantic-ui-react';
 import Media from 'react-media';
 import numeral from 'numeral';
+import { injectIntl } from 'react-intl';
+import * as messages from '../../i18n/messages';
 import EditExpenseModalContainer from '../containers/EditExpenseModalContainer';
 
 const propTypes = {
@@ -26,11 +28,12 @@ class ListExpense extends Component {
 
 
 	renderRows(expenses) {
+		const { intl: { formatMessage } } = this.props;
 		if(!expenses || expenses.length == 0) {
 			return (
 				<Table.Row>
 					<Table.Cell textAlign='center' colSpan='5'>
-					There's no expense recorded yet
+					{ formatMessage(messages.expenseList.misc.noExpense) }
 					</Table.Cell>
 				</Table.Row>
 			);
@@ -71,7 +74,7 @@ class ListExpense extends Component {
 				rows.push(
 					<Table.Row key={'sub'+count}>
 						<Table.Cell colSpan='5'>
-						<b>Involved:</b> {involved}
+						<b>{ formatMessage(messages.expenseForm.labels.involved) }:</b> {involved}
 						</Table.Cell>
 					</Table.Row>
 				);
@@ -85,22 +88,22 @@ class ListExpense extends Component {
 
 
   	render() {
-
+		const { intl: { formatMessage } } = this.props;
   		let rows = this.props.event ? this.renderRows(this.props.event.expenses) : null;
 
   		return (
   			<Segment style={{textAlign:'center', marginTop: '20px', backgroundColor: 'rgba(255,255,255,0.8)'}}>
 				<Media query={{maxWidth: '800px'}} render={() => (
-					<Header style={{borderBottom: '1px solid rgba(0,0,0,.1)', paddingBottom: '7px', marginBottom: '0px'}} as='h4'>All expenses</Header>
+					<Header style={{borderBottom: '1px solid rgba(0,0,0,.1)', paddingBottom: '7px', marginBottom: '0px'}} as='h4'>{ formatMessage(messages.expenseList.misc.allExpenses) }</Header>
 				)}/>
 				<Table unstackable compact fixed basic='very' style={{marginTop:'0px'}}>
 					<Media query={{minWidth: '801px'}} render={() => (
 						<Table.Header>
 							<Table.Row>
-								<Table.HeaderCell>Description</Table.HeaderCell>
-								<Table.HeaderCell>Amount</Table.HeaderCell>
-								<Table.HeaderCell>Payer</Table.HeaderCell>
-								<Table.HeaderCell textAlign='center'>Edit</Table.HeaderCell>
+								<Table.HeaderCell>{ formatMessage(messages.expenseForm.labels.activity) }</Table.HeaderCell>
+								<Table.HeaderCell>{ formatMessage(messages.expenseForm.labels.cost) }</Table.HeaderCell>
+								<Table.HeaderCell>{ formatMessage(messages.expenseForm.labels.payer) }</Table.HeaderCell>
+								<Table.HeaderCell textAlign='center'>{ formatMessage(messages.expenseList.buttons.edit) }</Table.HeaderCell>
 							</Table.Row>
 						</Table.Header>
 					)}/>
@@ -114,4 +117,4 @@ class ListExpense extends Component {
 
 }
 
-export default ListExpense;
+export default injectIntl(ListExpense);

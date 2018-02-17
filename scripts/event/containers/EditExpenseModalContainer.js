@@ -5,7 +5,8 @@ import ManageEvent from '../components/ManageEvent';
 import * as eventAction from '../EventAction';
 import { browserHistory } from 'react-router';
 import ExpenseForm from '../components/ExpenseForm';
-
+import { injectIntl } from 'react-intl';
+import * as messages from '../../i18n/messages';
 
 const mapStateToProps = state => {
     return {
@@ -93,10 +94,11 @@ class EditExpenseModalContainer extends Component {
         const button = (
             <Icon name='write' onClick={this.handleOpen.bind(this)} link/>
         );
+        const { intl: { formatMessage } } = this.props;
 
         return (
             <Modal trigger={button} open={this.state.modalOpen} onClose={this.handleClose.bind(this)} closeIcon='close'>
-                <Modal.Header>Edit an Expense</Modal.Header>
+                <Modal.Header>{ formatMessage(messages.expense.misc.editExpense) }</Modal.Header>
                 <Modal.Content>
                     <ExpenseForm
                         error={this.state.error}
@@ -114,4 +116,4 @@ class EditExpenseModalContainer extends Component {
     }
 }
 
-export default connect(mapStateToProps)(EditExpenseModalContainer);
+export default injectIntl(connect(mapStateToProps)(EditExpenseModalContainer));

@@ -1,6 +1,8 @@
 import React, { Component, PropTypes } from 'react';
 import { Icon, Form, Button, Input, Message, Dropdown, Segment, TextArea, Header } from 'semantic-ui-react';
 import { browserHistory } from 'react-router';
+import { injectIntl } from 'react-intl';
+import * as messages from '../../i18n/messages';
 
 const propTypes = {
 };
@@ -23,9 +25,10 @@ class FeedbackForm extends Component {
   	}
 
   	render() {
-  		let errorMessage = null;
-  		let helpMessage = (<Message header='Feedback' info
-					content='We value your feedback very much! Feel free to request new feature or report bugs. We will get back to you as soon as possible.'/>);
+		let errorMessage = null;
+		const { intl: { formatMessage } } = this.props;
+  		let helpMessage = (<Message header={ formatMessage(messages.feedback.misc.feedback) } info
+					content={ formatMessage(messages.feedback.misc.headline) } />);
   		if (this.props.error) {
 	  		errorMessage = (
 	  			<Message error
@@ -36,23 +39,23 @@ class FeedbackForm extends Component {
   		}
 
   		if (this.props.receivedFeedback) {
-  			helpMessage = (<Message header='Thank you!' positive
-					content='We received your feedback and will contact you soon.'/>);
+  			helpMessage = (<Message header={ formatMessage(messages.feedback.misc.thankYou) } positive
+					content={ formatMessage(messages.feedback.misc.received) } />);
   		}
 
   		const options = [
-  			{text: 'Bug Report', value: 'Bug Report', content: <span><Icon name='bug'/>Bug Report</span> },
-  			{text: 'Feature Request', value: 'Feature Request', content: <span><Icon name='star'/>Feature Request</span> },
-  			{text: 'Other', value: 'Other', content: <span><Icon name='question'/>Other</span> },
+  			{text: formatMessage(messages.feedback.misc.bug), value: 'Bug Report', content: <span><Icon name='bug'/>{ formatMessage(messages.feedback.misc.bug) }</span> },
+  			{text: formatMessage(messages.feedback.misc.feature), value: 'Feature Request', content: <span><Icon name='star'/>{ formatMessage(messages.feedback.misc.feature) }</span> },
+  			{text: formatMessage(messages.feedback.misc.other), value: 'Other', content: <span><Icon name='question'/>{ formatMessage(messages.feedback.misc.other) }</span> },
   		];
 
   		let returnButton = null;
   		if (this.props.event) {
   			returnButton = (<Button type='button' basic color='black' 
-					content='Return' icon='reply' labelPosition='left' onClick={this.returnToEdit.bind(this)}/>);
+					content={ formatMessage(messages.feedback.buttons.return) } icon='reply' labelPosition='left' onClick={this.returnToEdit.bind(this)}/>);
   		} else {
   			returnButton = (<Button type='button' basic color='black' 
-					content='Return' icon='reply' labelPosition='left' onClick={this.returnToCreate.bind(this)}/>);
+					content={ formatMessage(messages.feedback.buttons.return) } icon='reply' labelPosition='left' onClick={this.returnToCreate.bind(this)}/>);
   		}
 
   		let mainContent;
@@ -62,29 +65,29 @@ class FeedbackForm extends Component {
 				{errorMessage}
 				{helpMessage}
 				<Form.Field>
-					<label>Your Name</label>
-					<Input placeholder='What is your name' 
+					<label>{ formatMessage(messages.feedback.labels.name) }</label>
+					<Input placeholder={ formatMessage(messages.feedback.placeholders.name) }
 						   name='name'
 						   onChange={this.props.changeFields}/>
 				</Form.Field>
 				<Form.Field>
-					<label>Your Email</label>
-					<Input placeholder='How to reach out to you' 
+					<label>{ formatMessage(messages.feedback.labels.email) }</label>
+					<Input placeholder={ formatMessage(messages.feedback.placeholders.email) }
 						   name='email'
 						   onChange={this.props.changeFields}/>
 				</Form.Field>
 				<Form.Field>
-					<label>Feedback Type</label>
+					<label>{ formatMessage(messages.feedback.labels.type) }</label>
 					<Dropdown name='type'
-							  placeholder='Choose a type for your feedback'
+							  placeholder={ formatMessage(messages.feedback.placeholders.type) }
 							  onChange={this.props.changeFields}
 							  fluid selection options={options} />
 				</Form.Field>
 				<Form.Field>
-					<label>Feedback Content</label>
-					<TextArea placeholder='Tell us more' name='content' onChange={this.props.changeFields}/>
+					<label>{ formatMessage(messages.feedback.labels.content) }</label>
+					<TextArea placeholder={ formatMessage(messages.feedback.placeholders.content) } name='content' onChange={this.props.changeFields}/>
 				</Form.Field>
-				<Button loading={this.props.isLoading} type='button' basic color='black' content='Submit' icon='signup' labelPosition='left' onClick={this.props.submitFeedback}/>
+				<Button loading={this.props.isLoading} type='button' basic color='black' content={ formatMessage(messages.feedback.buttons.submit) } icon='signup' labelPosition='left' onClick={this.props.submitFeedback}/>
 				{returnButton}
 			</Form>
 		);
@@ -98,4 +101,4 @@ class FeedbackForm extends Component {
 
 }
 
-export default FeedbackForm;
+export default injectIntl(FeedbackForm);

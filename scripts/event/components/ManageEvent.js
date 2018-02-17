@@ -1,6 +1,8 @@
 import React, { Component, PropTypes } from 'react';
 import { Icon, Form, Button, Input, Message, Dropdown, Segment } from 'semantic-ui-react';
 import { browserHistory } from 'react-router';
+import { injectIntl } from 'react-intl';
+import * as messages from '../../i18n/messages';
 
 const propTypes = {
 };
@@ -43,34 +45,34 @@ class ManageEvent extends Component {
   	}
 
   	render() {
-
+		const { intl: { formatMessage } } = this.props;
   		let errorMessage = null;
   		if (this.props.error) {
 	  		errorMessage = (
 	  			<Message error
-			    	header='Failed'
+			    	header={ formatMessage(messages.event.misc.error) }
 			    	content={this.props.error}
 			    />
 	  		);
   		}
 
-  		const { currentNames } = this.state
+  		const { currentNames } = this.state;
 
   		let	mainContent = (
 			<Form error={!!this.props.error}>
 					{errorMessage}
 				<Form.Field>
-					<label>Name</label>
-					<Input placeholder='Give this event a name' 
+					<label>{ formatMessage(messages.event.labels.name) }</label>
+					<Input placeholder={ formatMessage(messages.event.misc.giveName) }
 						   name='name'
 						   defaultValue={this.props.event.name}
 						   onChange={this.props.changeFields}/>
 				</Form.Field>
 				<Form.Field>
-					<label>Who are in this event?</label>
+					<label>{ formatMessage(messages.event.misc.who) }</label>
 					<Dropdown
 				        options={this.state.names}
-				        placeholder='Type in a name and hit enter'
+				        placeholder={ formatMessage(messages.event.misc.typeName) }
 				        search
 				        selection
 				        fluid
@@ -82,9 +84,9 @@ class ManageEvent extends Component {
 				     />
 				</Form.Field>
 				<Button loading={this.props.isLoading} type='button' basic color='black' 
-					content='Update' icon='signup' labelPosition='left' onClick={this.props.updateEvent.bind(this, this.state.currentNames)}/>
+					content={ formatMessage(messages.event.buttons.update) } icon='signup' labelPosition='left' onClick={this.props.updateEvent.bind(this, this.state.currentNames)}/>
 				<Button type='button' basic color='black' 
-					content='Return' icon='reply' labelPosition='left' onClick={this.returnToEdit.bind(this)}/>
+					content={ formatMessage(messages.event.buttons.return) } icon='reply' labelPosition='left' onClick={this.returnToEdit.bind(this)}/>
 			</Form>
 		);
 
@@ -97,4 +99,4 @@ class ManageEvent extends Component {
 
 }
 
-export default ManageEvent;
+export default injectIntl(ManageEvent);

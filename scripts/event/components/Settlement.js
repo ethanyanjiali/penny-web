@@ -1,5 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 import { Table, Icon, List, Button, Image, Label, Dropdown, Segment, Header } from 'semantic-ui-react';
+import { injectIntl } from 'react-intl';
+import * as messages from '../../i18n/messages';
 
 const propTypes = {
 };
@@ -9,19 +11,20 @@ class Settlement extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			showSettlement: {}
+			hideSettlement: {}
 		}
 	}
 
 	toggleSettlement(count) {
-		let showSettlement = Object.assign({}, this.state.showSettlement);
-		showSettlement[count] = !showSettlement[count];
+		let hideSettlement = Object.assign({}, this.state.hideSettlement);
+		hideSettlement[count] = !hideSettlement[count];
 		this.setState({
-			showSettlement: showSettlement
+			hideSettlement: hideSettlement
 		});
 	}
 
 	renderRow(event, balance, settlement) {
+		const { intl: { formatMessage } } = this.props;
 		if (!event || !balance || !settlement) {
 			return null;
 		}
@@ -40,13 +43,13 @@ class Settlement extends Component {
 				color = 'red';
 				amount = `${balance[name].toFixed(2)}`;
 			}
-			if (this.state.showSettlement[count]) {
+			if (!this.state.hideSettlement[count]) {
 				triangle = 'triangle down';
 				if (settlement[name]) {
-					let text = settlement[name].reduce((result, method) => {
-						result = result + ' ' + parseFloat(method.amount).toFixed(2) + ' to ' + method.payTo + ',';
-						return result;
-					}, 'Pay')
+					let text = settlement[name].map(method => {
+						return formatMessage(messages.settlement.misc.payTo, { amount: parseFloat(method.amount).toFixed(2), name: method.payTo });
+					});
+					text = formatMessage(messages.settlement.misc.pay) + ' ' + text.join(', ');
 					settlementRow = (
 						<List.Content style={{marginTop: '8px'}}>
 							{text}
@@ -55,7 +58,7 @@ class Settlement extends Component {
 				} else {
 					settlementRow = (
 						<List.Content style={{marginTop: '8px'}}>
-							You don't owe anyone.
+							{ formatMessage(messages.settlement.misc.dontOwe) }
 						</List.Content>
 					);
 				}
@@ -163,14 +166,14 @@ class Settlement extends Component {
 	}
 
   	render() {
-
+		const { intl: { formatMessage } } = this.props;
   		let balance = this.calculateBalance(this.props.event ? this.props.event.expenses : null);
   		let settlement = this.calculateSettlement(this.props.event, balance);
   		let rows = this.renderRow(this.props.event, balance, settlement);
 
   		return (
   			<Segment style={{marginTop: '20px', backgroundColor: 'rgba(255,255,255,0.7)'}}>
-  				<Header style={{textAlign:'center', borderBottom: '1px solid rgba(0,0,0,.1)', paddingBottom: '7px', marginBottom: '0px'}} as='h4'>Settlement</Header>
+  				<Header style={{textAlign:'center', borderBottom: '1px solid rgba(0,0,0,.1)', paddingBottom: '7px', marginBottom: '0px'}} as='h4'>{ formatMessage(messages.settlement.labels.settlement) }</Header>
 				<List divided relaxed verticalAlign='middle'>
 					{rows}
 				</List>
@@ -180,4 +183,4 @@ class Settlement extends Component {
 
 }
 
-export default Settlement;
+export default injectIntl(Settlement);

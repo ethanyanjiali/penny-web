@@ -1,5 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 import { Icon, Form, Button, Input, Message, Dropdown, Segment } from 'semantic-ui-react';
+import { injectIntl } from 'react-intl';
+import * as messages from '../../i18n/messages';
 
 const propTypes = {
 };
@@ -36,7 +38,7 @@ class NewEvent extends Component {
   	}
 
   	render() {
-
+		const { intl: { formatMessage } } = this.props;
   		let errorMessage = null;
   		if (this.props.error) {
 	  		errorMessage = (
@@ -47,22 +49,22 @@ class NewEvent extends Component {
 	  		);
   		}
 
-  		const { currentNames } = this.state
+  		const { currentNames } = this.state;
 
   		let	mainContent = (
 			<Form error={!!this.props.error}>
 					{errorMessage}
 				<Form.Field>
-					<label>Name</label>
-					<Input placeholder='Give this event a name' 
+					<label>{ formatMessage(messages.event.labels.name) }</label>
+					<Input placeholder={ formatMessage(messages.event.misc.giveName) }
 						   name='name'
 						   onChange={this.props.changeFields}/>
 				</Form.Field>
 				<Form.Field>
-					<label>Who are in this event?</label>
+					<label>{ formatMessage(messages.event.misc.who) }</label>
 					<Dropdown
 				        options={this.state.names}
-				        placeholder='Type in a name and hit enter'
+				        placeholder={ formatMessage(messages.event.misc.typeName) }
 				        search
 				        selection
 				        fluid
@@ -74,7 +76,7 @@ class NewEvent extends Component {
 				     />
 				</Form.Field>
 				<Button loading={this.props.isLoading} type='button' basic color='black' 
-					content='Create This Event' icon='signup' labelPosition='left' onClick={this.props.createEvent.bind(this, this.state.currentNames)}/>
+					content={ formatMessage(messages.event.buttons.createEvent) } icon='signup' labelPosition='left' onClick={this.props.createEvent.bind(this, this.state.currentNames)}/>
 			</Form>
 		);
 
@@ -87,4 +89,4 @@ class NewEvent extends Component {
 
 }
 
-export default NewEvent;
+export default injectIntl(NewEvent);

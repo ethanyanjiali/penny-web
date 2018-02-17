@@ -2,6 +2,9 @@ import React, { Component } from 'react';
 import { Grid, Image, List, Icon, Segment, Message, Divider, Button } from 'semantic-ui-react';
 import { connect } from 'react-redux';
 import { Link, browserHistory } from 'react-router';
+import { injectIntl } from 'react-intl';
+import * as messages from '../../i18n/messages';
+import * as userAction from '../../user/UserAction';
 import * as commonAction from '../CommonAction';
 
 class HistoryContainer extends Component {
@@ -28,19 +31,20 @@ class HistoryContainer extends Component {
 	}
 
 	render() {
+		const { intl: { formatMessage } } = this.props;
 		let events = JSON.parse(localStorage.getItem('events')) || [];
 		let list = null;
 		let message = null;
 		if (events && events[0]) {
 			list = this.renderList(events);
 			message = (
-				<Message header='History' info
-						content='History would be lost if you change browser or clean browser storage.'/>
+				<Message header={ formatMessage(messages.history.misc.history) } info
+						 content={ formatMessage(messages.history.misc.lost) } />
 			);
 		} else {
 			message = (
-				<Message header='History' info
-						content='No history found. Please open an exsiting event or creat one first.'/>
+				<Message header={ formatMessage(messages.history.misc.history) } info
+						content={ formatMessage(messages.history.misc.noHistory) } />
 			);
 		}
 
@@ -52,7 +56,7 @@ class HistoryContainer extends Component {
 							{message}
 							{list}
 							<Button type='button' basic color='black' 
-								content='Return' icon='reply' labelPosition='left' onClick={this.returnToHome.bind(this)}/>
+								content={ formatMessage(messages.history.buttons.return) } icon='reply' labelPosition='left' onClick={this.returnToHome.bind(this)}/>
 						</Segment>
 					</Grid.Column>
 				</Grid.Row>
@@ -61,4 +65,4 @@ class HistoryContainer extends Component {
 	}
 }
 
-export default HistoryContainer;
+export default injectIntl(HistoryContainer);

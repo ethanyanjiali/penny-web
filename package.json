@@ -22,6 +22,7 @@
     "eslint-loader": "^1.6.0",
     "express": "^4.14.0",
     "file-loader": "^0.9.0",
+    "flat": "^4.0.0",
     "image-webpack-loader": "^3.0.0",
     "mocha": "^3.1.2",
     "node-polyglot": "^2.2.1",
@@ -31,6 +32,7 @@
     "react-cookie": "^0.4.8",
     "react-copy-to-clipboard": "^4.2.3",
     "react-dom": "^15.3.2",
+    "react-intl": "^2.4.0",
     "react-media": "^1.4.0",
     "react-progressive-image": "^0.1.2",
     "react-redux": "^4.4.5",
@@ -43,5 +45,8 @@
     "style-loader": "^0.13.1",
     "webpack": "^1.13.3",
     "webpack-dev-server": "^1.16.2"
+  },
+  "devDependencies": {
+    "babel-plugin-react-intl": "^2.4.0"
   }
 }
