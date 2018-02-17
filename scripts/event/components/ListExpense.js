@@ -15,20 +15,14 @@ class ListExpense extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			rowDetails: {}
+			showParticipants: false
 		};
 	}
 
 	toggleDetails() {
-		const result = {};
-		if (this.props.event.expenses && this.props.event.expenses.length > 0) {
-			const newRowDetails = _.forEach(this.props.event.expenses, (value, index) => {
-				result[index] = !Boolean(this.state.rowDetails[0]);
-			});
-			this.setState({
-				rowDetails: result
-			});
-		}
+		this.setState({
+			showParticipants: !this.state.showParticipants, 
+		});
 	}
 
 
@@ -87,7 +81,7 @@ class ListExpense extends Component {
 				</Table.Row>
 			);
 
-			if (this.state.rowDetails[count]) {
+			if (this.state.showParticipants) {
 				rows.push(
 					<Table.Row key={'sub'+count}>
 						<Table.Cell colSpan='4'>
