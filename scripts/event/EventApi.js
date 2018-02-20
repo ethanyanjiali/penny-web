@@ -45,7 +45,7 @@ class EventApi {
 		return request.post(`/event/edit/${eventId}/add-expense`, payload)
 			.then(response => {
 				logApi(`POST /event/${eventId}/add-expense`, payload, response);
-				return response.data.event
+				return response.data.event;
 			});
 	}
 
@@ -57,7 +57,7 @@ class EventApi {
         return request.put(`/event/edit/${eventId}/${count}/update-expense/${expenseId}`, payload)
             .then(response => {
                 logApi(`POST /event/${eventId}/${count}/update-expense/${expenseId}`, payload, response);
-                return response.data.event
+                return response.data.event;
             });
 	}
 

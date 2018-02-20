@@ -23,8 +23,10 @@ class EditEventContainer extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			newExpense: {}
-		}
+			newExpense: {
+				type: 'evenly',
+			}
+		};
 	}
 
 	checkAndSetLocalStorage(id, name) {
@@ -55,6 +57,48 @@ class EditEventContainer extends Component {
 	changeNewExpenseFields(event, target) {
 		let newState = Object.assign({}, this.state);
 		newState.newExpense[target.name] = target.value;
+		if (target.name === 'involved') {
+			this.resetAllocation(newState.newExpense.type);
+		}
+		this.setState(newState);
+	}
+
+	resetAllocation(type = 'evenly') {
+		let newState = Object.assign({}, this.state);
+		if (type === 'percentage') {
+			newState.newExpense.percentage = newState.newExpense.involved && newState.newExpense.involved.reduce((result, curr) => {
+				result[curr] = 1 / newState.newExpense.involved.length;
+				return result;
+			}, {});
+			newState.newExpense.shares = null;
+		} else if (type === 'shares') {
+			newState.newExpense.shares = newState.newExpense.involved && newState.newExpense.involved.reduce((result, curr) => {
+				result[curr] = 1;
+				return result;
+			}, {});
+			newState.newExpense.percentage = null;
+		} else {
+			newState.newExpense.shares = null;
+			newState.newExpense.percentage = null;	
+		}
+		this.setState(newState);
+	}
+
+	handleSelectType(type) {
+		let newState = Object.assign({}, this.state);
+		newState.newExpense.type = type;
+		this.resetAllocation(type);
+		this.setState(newState);
+	}
+
+	handleChangeAllocation(event, target) {
+		const { name, value } = target;
+		let newState = Object.assign({}, this.state);
+		if (newState.newExpense.type === 'percentage') {
+			newState.newExpense.percentage[name] = value;
+		} else if (newState.newExpense.type === 'shares') {
+			newState.newExpense.shares[name] = value;
+		}
 		this.setState(newState);
 	}
 
@@ -82,6 +126,12 @@ class EditEventContainer extends Component {
 					<Grid.Row centered columns={1}>
 						<Grid.Column textAlign='left' mobile={16} tablet={10} computer={8}>
 							<AddExpense event={this.props.currentEvent}
+								onSelectType={this.handleSelectType.bind(this)}
+								onChangeAllocation={this.handleChangeAllocation.bind(this)}
+								type={ this.state.newExpense.type }
+								involved={ this.state.newExpense.involved }
+								percentage={ this.state.newExpense.percentage }
+								shares={this.state.newExpense.shares}
 								isLoadingEvent={this.props.isLoadingEvent}
 								isAddingExpense={this.props.isAddingExpense}
 								addExpense={this.addExpense.bind(this)}

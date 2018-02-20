@@ -23,10 +23,10 @@ class AddExpense extends Component {
 	}
 
   	render() {
-		const { intl: { formatMessage } } = this.props;
+		const { intl: { formatMessage }, onSelectType, type, percentage, involved, shares, onChangeAllocation } = this.props;
   		const options = this.props.event && this.props.event.people ? this.props.event.people.map(
   			name => {
-  				return {text: name, value: name}
+  				return {text: name, value: name};
   			}) : [];
 
   		let mainContent;
@@ -34,11 +34,17 @@ class AddExpense extends Component {
   		if (this.state.visible) {
   			mainContent = (
   				<ExpenseForm
+					type={ type }
+					involved={ involved }
+					percentage={ percentage }
+					shares={ shares }
+					onSelectType={ onSelectType }
 					error={this.props.error}
 					changeFields={this.props.changeFields}
 					people={options}
 					addExpense={this.props.addExpense}
-                    isAddingExpense={this.props.isAddingExpense}
+					isAddingExpense={this.props.isAddingExpense}
+					onChangeAllocation={onChangeAllocation}
 					toggleVisible={this.toggleVisible.bind(this)}
 				/>
   			);

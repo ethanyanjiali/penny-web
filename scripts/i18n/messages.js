@@ -274,6 +274,26 @@ export const expense = defineMessages({
             id: 'app.expense.misc.editExpense',
             defaultMessage: "Edit an expense",
         }
+    },
+    labels: {
+        share: {
+            id: 'app.expense.labels.share',
+            defaultMessage: "Share",
+        }
+    },
+    buttons: {
+        splitEvenly: {
+            id: 'app.expense.buttons.splitEvenly',
+            defaultMessage: "Split evenly",
+        },
+        byPercentage: {
+            id: 'app.expense.buttons.splitEvenly',
+            defaultMessage: "By %",
+        },
+        byShares: {
+            id: 'app.expense.buttons.splitEvenly',
+            defaultMessage: "By shares",
+        }
     }
 });
 
