@@ -11,7 +11,7 @@
 body {
   background-color: #eee;
 }
-.loading {
+.initial-app-loading {
     margin: auto;
     left: 0;
     right: 0;
@@ -25,13 +25,13 @@ body {
     border-radius: 100%;
     height: 50px;
     width: 50px;
-    -webkit-animation: spin .6s infinite linear;
-    -moz-animation: spin .6s infinite linear;
-    -ms-animation: spin .6s infinite linear;
-    -o-animation: spin .6s infinite linear;
-    animation: spin .6s infinite linear;
+    -webkit-animation: spin1 .6s infinite linear;
+    -moz-animation: spin1 .6s infinite linear;
+    -ms-animation: spin1 .6s infinite linear;
+    -o-animation: spin1 .6s infinite linear;
+    animation: spin1 .6s infinite linear;
 }
-@keyframes "spin" {
+@keyframes "spin1" {
  from {
     -webkit-transform: rotate(0deg);
    	-moz-transform: rotate(0deg);
@@ -47,7 +47,7 @@ body {
    	transform: rotate(359deg);
  }
 }
-@-moz-keyframes spin {
+@-moz-keyframes spin1 {
  from {
    -moz-transform: rotate(0deg);
    transform: rotate(0deg);
@@ -57,7 +57,7 @@ body {
    transform: rotate(359deg);
  }
 }
-@-webkit-keyframes "spin" {
+@-webkit-keyframes "spin1" {
  from {
    -webkit-transform: rotate(0deg);
    transform: rotate(0deg);
@@ -67,7 +67,7 @@ body {
    transform: rotate(359deg);
  }
 }
-@-ms-keyframes "spin" {
+@-ms-keyframes "spin1" {
  from {
    -ms-transform: rotate(0deg);
    transform: rotate(0deg);
@@ -77,7 +77,7 @@ body {
    transform: rotate(359deg);
  }
 }
-@-o-keyframes "spin" {
+@-o-keyframes "spin1" {
  from {
    -o-transform: rotate(0deg);
    transform: rotate(0deg);
@@ -90,7 +90,7 @@ body {
 </style>
 <body style="overflow-x :hidden">
     <div id="react-container" style="height: 100%">
-        <div class="loading"></div>
+        <div class="initial-app-loading"></div>
     </div>
     <script src="/build/index.js"></script>
     <script>
