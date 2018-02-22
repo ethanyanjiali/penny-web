@@ -4,6 +4,7 @@ import ReactDOM from 'react-dom';
 import _ from 'lodash';
 import { Provider } from 'react-redux';
 import { Router, Route, browserHistory } from 'react-router';
+import { Loader } from 'semantic-ui-react';
 import store from './store';
 import routes from './RootRoutes';
 import '../styles/index.scss';
@@ -58,6 +59,12 @@ fetch(`${API_HOST}common/lang`)
 					</Router>
 				</Provider>
 			</IntlProvider>,
+			document.getElementById('react-container')
+		);
+	})
+	.catch(() => {
+		ReactDOM.render(
+			<div>Oops, looks like our server is down. Please retry later. If the issue persist, please contact me at liyanjia92 at gmail</div>,
 			document.getElementById('react-container')
 		);
 	});

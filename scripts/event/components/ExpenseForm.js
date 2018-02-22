@@ -45,7 +45,7 @@ class ExpenseForm extends Component {
                               fluid multiple selection options={this.props.people} />
                 </Form.Field>
                 <Button.Group style={{ width: '100%', marginTop: '5px', marginBottom: '15px' }}>
-                    <Button type='button' toggle active={ type === 'evenly' } onClick={ () => onSelectType('evenly') }>{ formatMessage(messages.expense.buttons.splitEvenly) }</Button>
+                    <Button type='button' toggle active={ type === 'evenly' || !type } onClick={ () => onSelectType('evenly') }>{ formatMessage(messages.expense.buttons.splitEvenly) }</Button>
                     <Button.Or />
                     <Button type='button' toggle active={ type === 'percentage' } onClick={ () => onSelectType('percentage') }>{ formatMessage(messages.expense.buttons.byPercentage) }</Button>
                     <Button.Or />
