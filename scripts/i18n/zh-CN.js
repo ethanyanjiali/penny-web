@@ -70,5 +70,9 @@ export default {
     'app.expense.form.buttons.update': '更新',
     'app.expense.form.buttons.delete': '删除',
     'app.expense.form.buttons.addAnExpense': '添加一项开销',
-    'app.expense.form.misc.error': '错误'
+    'app.expense.form.misc.error': '错误',
+    'app.expense.buttons.splitEvenly': '平分',
+    'app.expense.buttons.percentage': '按比例分',
+    'app.expense.buttons.shares': '按份数分',
+    'app.expense.labels.share': '份',
 };

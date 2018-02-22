@@ -70,5 +70,9 @@ export default {
     'app.expense.form.buttons.update': 'Обновить',
     'app.expense.form.buttons.delete': 'Удалить',
     'app.expense.form.buttons.addAnExpense': 'добавить расходы',
-    'app.expense.form.misc.error': 'не смогли'
+    'app.expense.form.misc.error': 'не смогли',
+    'app.expense.buttons.splitEvenly': 'равномерно распределять',
+    'app.expense.buttons.percentage': 'процент',
+    'app.expense.buttons.shares': 'акции',
+    'app.expense.labels.share': 'акции',
 };

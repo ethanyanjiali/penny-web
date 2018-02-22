@@ -278,7 +278,7 @@ export const expense = defineMessages({
     labels: {
         share: {
             id: 'app.expense.labels.share',
-            defaultMessage: "Share",
+            defaultMessage: "Share(s)",
         }
     },
     buttons: {
@@ -287,11 +287,11 @@ export const expense = defineMessages({
             defaultMessage: "Split evenly",
         },
         byPercentage: {
-            id: 'app.expense.buttons.splitEvenly',
+            id: 'app.expense.buttons.percentage',
             defaultMessage: "By %",
         },
         byShares: {
-            id: 'app.expense.buttons.splitEvenly',
+            id: 'app.expense.buttons.shares',
             defaultMessage: "By shares",
         }
     }

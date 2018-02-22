@@ -1,4 +1,5 @@
 import React, { Component, PropTypes } from 'react';
+import _ from 'lodash';
 import { Table, Icon, List, Button, Image, Label, Dropdown, Segment, Header } from 'semantic-ui-react';
 import { injectIntl } from 'react-intl';
 import * as messages from '../../i18n/messages';
@@ -148,19 +149,53 @@ class Settlement extends Component {
 			return {};
 		}
 		let balance = expenses.reduce((result, expense) => {
-			expense.involved.map(name => {
-				let oneBalance = result[name] || 0.0;
-				oneBalance = oneBalance - parseFloat(expense.amount) / expense.involved.length;
-				if (expense.payor === name) {
-					oneBalance = oneBalance + parseFloat(expense.amount);
+			if (expense.type === 'shares') {
+				// split by percentage
+				const totalShares = _.sum(_.values(expense.shares));
+				expense.involved.map(name => {
+					let oneBalance = result[name] || 0.0;
+					oneBalance = oneBalance - parseFloat(expense.amount) * expense.shares[name] / totalShares;
+					if (expense.payor === name) {
+						oneBalance = oneBalance + parseFloat(expense.amount);
+					}
+					result[name] = oneBalance;
+				});
+				if (expense.involved.indexOf(expense.payor) == -1) {
+					let originalBalance = result[expense.payor] || 0.0;
+					result[expense.payor] = originalBalance + parseFloat(expense.amount);
 				}
-				result[name] = oneBalance;
-			});
-			if (expense.involved.indexOf(expense.payor) == -1) {
-				let originalBalance = result[expense.payor] || 0.0;
-				result[expense.payor] = originalBalance + parseFloat(expense.amount);
+				return result;
+			} else if (expense.type === 'percentage') {
+				// split by percentage
+				expense.involved.map(name => {
+					let oneBalance = result[name] || 0.0;
+					oneBalance = oneBalance - parseFloat(expense.amount) * expense.percentage[name] / 100;
+					if (expense.payor === name) {
+						oneBalance = oneBalance + parseFloat(expense.amount);
+					}
+					result[name] = oneBalance;
+				});
+				if (expense.involved.indexOf(expense.payor) == -1) {
+					let originalBalance = result[expense.payor] || 0.0;
+					result[expense.payor] = originalBalance + parseFloat(expense.amount);
+				}
+				return result;
+			} else {
+				// split evently
+				expense.involved.map(name => {
+					let oneBalance = result[name] || 0.0;
+					oneBalance = oneBalance - parseFloat(expense.amount) / expense.involved.length;
+					if (expense.payor === name) {
+						oneBalance = oneBalance + parseFloat(expense.amount);
+					}
+					result[name] = oneBalance;
+				});
+				if (expense.involved.indexOf(expense.payor) == -1) {
+					let originalBalance = result[expense.payor] || 0.0;
+					result[expense.payor] = originalBalance + parseFloat(expense.amount);
+				}
+				return result;
 			}
-			return result;
 		}, {});
 		return balance;
 	}

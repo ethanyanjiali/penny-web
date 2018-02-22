@@ -67,7 +67,7 @@ class EditEventContainer extends Component {
 		let newState = Object.assign({}, this.state);
 		if (type === 'percentage') {
 			newState.newExpense.percentage = newState.newExpense.involved && newState.newExpense.involved.reduce((result, curr) => {
-				result[curr] = 1 / newState.newExpense.involved.length;
+				result[curr] = 100 / newState.newExpense.involved.length;
 				return result;
 			}, {});
 			newState.newExpense.shares = null;

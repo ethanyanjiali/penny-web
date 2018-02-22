@@ -47,7 +47,16 @@ class ListExpense extends Component {
                 }) : [];
 
 		expenses.forEach(expense => {
-			let involved = expense.involved && expense.involved.join(', ');
+			const participants = expense.involved && expense.involved.map(person => {
+				if (expense.type === 'percentage') {
+					return `${person}(${expense.percentage[person]}%)`;
+				} else if (expense.type === 'shares') {
+					return `${person}(${expense.shares[person]})`;
+				} else {
+					return person;
+				}
+			});
+			let involved = participants && participants.join(', ');
 
 			rows.push(
 				<Table.Row key={'main'+count}>

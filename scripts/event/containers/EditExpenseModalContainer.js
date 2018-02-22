@@ -78,6 +78,47 @@ class EditExpenseModalContainer extends Component {
         this.setState(newState);
     }
 
+    resetAllocation(type = 'evenly') {
+		let newState = Object.assign({}, this.state);
+		if (type === 'percentage') {
+			newState.expense.percentage = newState.expense.involved && newState.expense.involved.reduce((result, curr) => {
+				result[curr] = 100 / newState.expense.involved.length;
+				return result;
+			}, {});
+			newState.expense.shares = null;
+		} else if (type === 'shares') {
+			newState.expense.shares = newState.expense.involved && newState.expense.involved.reduce((result, curr) => {
+				result[curr] = 1;
+				return result;
+			}, {});
+			newState.expense.percentage = null;
+		} else {
+			newState.expense.shares = null;
+			newState.expense.percentage = null;	
+		}
+		this.setState(newState);
+	}
+
+    handleSelectType(type) {
+		let newState = Object.assign({}, this.state);
+		newState.expense.type = type;
+		this.resetAllocation(type);
+		this.setState(newState);
+	}
+
+    handleChangeAllocation(event, target) {
+		const { name, value } = target;
+        let newState = Object.assign({}, this.state);
+        let expense = newState.expense || this.props.expense;
+		if (expense.type === 'percentage') {
+			expense.percentage[name] = value;
+		} else if (expense.type === 'shares') {
+			expense.shares[name] = value;
+        }
+        newState.expense = expense;
+		this.setState(newState);
+	}
+
     componentWillReceiveProps(newProps) {
         if (newProps.updateExpenseErrorCount === newProps.count && newProps.updateExpenseError ||
             newProps.deleteExpenseErrorCount === newProps.count && newProps.deleteExpenseError) {
@@ -90,6 +131,7 @@ class EditExpenseModalContainer extends Component {
     render() {
         const isUpdating = this.props.updatingExpenseCount == this.props.count;
         const isDeleting = this.props.deletingExpenseCount == this.props.count;
+        const { expense: { shares, percentage, type, involved } } = this.state;
 
         const button = (
             <Icon name='write' onClick={this.handleOpen.bind(this)} link/>
@@ -109,6 +151,12 @@ class EditExpenseModalContainer extends Component {
                         isDeletingExpense={isDeleting}
                         isUpdatingExpense={isUpdating}
                         expense={this.props.expense}
+                        type={ type }
+                        involved={ involved }
+                        percentage={ percentage }
+                        shares={ shares }
+                        onSelectType={ this.handleSelectType.bind(this) }
+                        onChangeAllocation={ this.handleChangeAllocation.bind(this) }
                     />
                 </Modal.Content>
             </Modal>
