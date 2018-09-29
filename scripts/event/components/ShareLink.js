@@ -1,4 +1,5 @@
-import React, { Component, PropTypes } from 'react';
+import PropTypes from 'prop-types';
+import React, { Component } from 'react';
 import { Icon, Form, Button, Input, Message, Dropdown, Segment } from 'semantic-ui-react';
 import { Link } from 'react-router';
 import CopyToClipboard from 'react-copy-to-clipboard';

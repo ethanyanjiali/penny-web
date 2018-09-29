@@ -1,4 +1,5 @@
-import React, { Component, PropTypes } from 'react';
+import PropTypes from 'prop-types';
+import React, { Component } from 'react';
 import { Icon, Form, Button, Input, Message, Dropdown, Segment, TextArea, Header } from 'semantic-ui-react';
 import { browserHistory } from 'react-router';
 import { injectIntl } from 'react-intl';

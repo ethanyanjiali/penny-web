@@ -1,4 +1,5 @@
-import React, { Component, PropTypes } from 'react';
+import PropTypes from 'prop-types';
+import React, { Component } from 'react';
 import { injectIntl } from 'react-intl';
 import * as messages from '../../i18n/messages';
 import { Icon, Form, Button, Input, Message, Dropdown, Segment, Header } from 'semantic-ui-react';

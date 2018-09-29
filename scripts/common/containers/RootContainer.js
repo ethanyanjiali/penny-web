@@ -1,4 +1,5 @@
-import React, { Component, PropTypes } from 'react';
+import PropTypes from 'prop-types';
+import React, { Component } from 'react';
 import NavBar from '../components/NavBar';
 import { connect } from 'react-redux';
 import { injectIntl } from 'react-intl';

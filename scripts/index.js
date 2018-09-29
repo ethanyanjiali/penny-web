@@ -1,4 +1,5 @@
-import React, { Component, PropTypes } from 'react';
+import PropTypes from 'prop-types';
+import React, { Component } from 'react';
 import { IntlProvider, addLocaleData } from 'react-intl';
 import ReactDOM from 'react-dom';
 import _ from 'lodash';
@@ -67,7 +68,7 @@ fetch(`${API_HOST}common/lang`)
       <IntlProvider locale={ locale } defaultLocale='en' messages={ messages }>
         <Provider store={store}>
           <Router history={browserHistory}>
-            {routes}
+            { routes }
           </Router>
         </Provider>
       </IntlProvider>,

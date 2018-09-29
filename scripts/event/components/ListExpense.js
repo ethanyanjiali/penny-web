@@ -1,4 +1,5 @@
-import React, { Component, PropTypes } from 'react';
+import PropTypes from 'prop-types';
+import React, { Component } from 'react';
 import { Table, Icon, Form, Button, Input, Message, Dropdown, Segment, Header, Modal } from 'semantic-ui-react';
 import Media from 'react-media';
 import _ from 'lodash';

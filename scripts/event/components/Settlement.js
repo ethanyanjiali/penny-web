@@ -1,4 +1,5 @@
-import React, { Component, PropTypes } from 'react';
+import PropTypes from 'prop-types';
+import React, { Component } from 'react';
 import _ from 'lodash';
 import { Table, Icon, List, Button, Image, Label, Dropdown, Segment, Header } from 'semantic-ui-react';
 import { injectIntl } from 'react-intl';
