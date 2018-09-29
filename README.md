@@ -9,7 +9,7 @@ Just like the backend, I've open sourced this web UI of Penny in 2018. The singl
 The amazing Webpack and Babel also help to make it happen.
 
 ## Development
-1. Make sure node 6+ and npm 3+ are installed.
+1. Make sure node 8+ and npm 5+ are installed.
 0. Install dependencies
     ```bash
     npm i
@@ -22,8 +22,7 @@ The amazing Webpack and Babel also help to make it happen.
 ## Deployment
 
 ## TODOS
-
-1. React 16
+1. CSS component
 2. React Final Form
 3. Redux Database
 4. Redesign
