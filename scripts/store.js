@@ -6,15 +6,15 @@ import reducer from './RootReducer';
 let store = {};
 
 if (process.env.NODE_ENV === 'production') {
-    store = createStore(
-        reducer,
-        applyMiddleware(thunkMiddleware)
-    );
+  store = createStore(
+    reducer,
+    applyMiddleware(thunkMiddleware),
+  );
 } else {
-    store = createStore(
-        reducer,
-        applyMiddleware(thunkMiddleware, createLogger())
-    );
+  store = createStore(
+    reducer,
+    applyMiddleware(thunkMiddleware, createLogger()),
+  );
 }
 
 export default store;

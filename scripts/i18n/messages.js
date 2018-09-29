@@ -6,68 +6,68 @@ export const messages = {
     misc: {
       headline: {
         id: 'app.feedback.misc.headline',
-        defaultMessage: 'We value your feedback very much! Feel free to request new feature or report bugs. We will get back to you as soon as possible.'
+        defaultMessage: 'We value your feedback very much! Feel free to request new feature or report bugs. We will get back to you as soon as possible.',
       },
       feedback: {
         id: 'app.feedback.misc.feedback',
-        defaultMessage: 'Feedback'
+        defaultMessage: 'Feedback',
       },
       received: {
         id: 'app.feedback.misc.received',
-        defaultMessage: 'We received your feedback and will contact you soon.'
+        defaultMessage: 'We received your feedback and will contact you soon.',
       },
       thankYou: {
         id: 'app.feedback.misc.thankYou',
-        defaultMessage: 'Thank You!'
+        defaultMessage: 'Thank You!',
       },
       bug: {
         id: 'app.feedback.misc.bug',
-        defaultMessage: 'Bug Report'
+        defaultMessage: 'Bug Report',
       },
       feature: {
         id: 'app.feedback.misc.feature',
-        defaultMessage: 'Feature Request'
+        defaultMessage: 'Feature Request',
       },
       other: {
         id: 'app.feedback.misc.other',
-        defaultMessage: 'Other'
+        defaultMessage: 'Other',
       },
     },
     labels: {
       name: {
         id: 'app.feedback.labels.name',
-        defaultMessage: 'Your Name'
+        defaultMessage: 'Your Name',
       },
       email: {
         id: 'app.feedback.labels.email',
-        defaultMessage: 'Your Email'
+        defaultMessage: 'Your Email',
       },
       type: {
         id: 'app.feedback.labels.type',
-        defaultMessage: 'Feedback Type'
+        defaultMessage: 'Feedback Type',
       },
       content: {
         id: 'app.feedback.labels.content',
-        defaultMessage: 'Feedback Content'
-      }
+        defaultMessage: 'Feedback Content',
+      },
     },
     placeholders: {
       name: {
         id: 'app.feedback.placeholders.name',
-        defaultMessage: 'What is your name'
+        defaultMessage: 'What is your name',
       },
       email: {
         id: 'app.feedback.placeholders.email',
-        defaultMessage: 'How to reach out to you'
+        defaultMessage: 'How to reach out to you',
       },
       type: {
         id: 'app.feedback.placeholders.type',
-        defaultMessage: 'Choose a type for your feedback'
+        defaultMessage: 'Choose a type for your feedback',
       },
       content: {
         id: 'app.feedback.placeholders.content',
-        defaultMessage: 'Tell us more'
-      }
+        defaultMessage: 'Tell us more',
+      },
     },
     buttons: {
       return: {
@@ -77,8 +77,8 @@ export const messages = {
       submit: {
         id: 'app.feedback.buttons.submit',
         defaultMessage: 'Submit',
-      }
-    }
+      },
+    },
   },
   history: {
     misc: {
@@ -93,13 +93,13 @@ export const messages = {
       history: {
         id: 'app.history.misc.history',
         defaultMessage: 'History',
-      }
+      },
     },
     buttons: {
       return: {
         id: 'app.history.buttons.return',
         defaultMessage: 'Return',
-      }
+      },
     },
   },
   root: {
@@ -110,7 +110,7 @@ export const messages = {
       },
       appStore: {
         id: 'app.root.misc.appStore',
-        defaultMessage: 'Open in App Store?'
+        defaultMessage: 'Open in App Store?',
       },
       wechatAndroid: {
         id: 'app.root.misc.wechatAndroid',
@@ -118,13 +118,13 @@ export const messages = {
       },
       playStore: {
         id: 'app.root.misc.playStore',
-        defaultMessage: 'Open in Play Store?'
+        defaultMessage: 'Open in Play Store?',
       },
       notSupported: {
         id: 'app.root.misc.notSupported',
         defaultMessage: 'Sorry your operating system is not supported. Send us a feedback on top right corner to request a feature!',
       },
-    }
+    },
   },
   welcome: {
     misc: {
@@ -171,7 +171,7 @@ export const messages = {
       feedback: {
         id: 'app.welcome.misc.feedback',
         defaultMessage: 'to give us any feedback',
-      }
+      },
     },
     buttons: {
       history: {
@@ -182,22 +182,22 @@ export const messages = {
         id: 'app.welcome.buttons.createEvent',
         defaultMessage: 'Create An Event',
       },
-    }
+    },
   },
   share: {
     misc: {
       copied: {
         id: 'app.share.misc.copied',
-        defaultMessage: "The link is copied to your clipboard. Share it to your friends!",
+        defaultMessage: 'The link is copied to your clipboard. Share it to your friends!',
       },
       shareLink: {
         id: 'app.share.misc.shareLink',
-        defaultMessage: "Share Link",
+        defaultMessage: 'Share Link',
       },
       another: {
         id: 'app.share.misc.another',
         defaultMessage: 'Split bills for another event?',
-      }
+      },
     },
   },
   settlement: {
@@ -208,164 +208,168 @@ export const messages = {
       },
       payTo: {
         id: 'app.settlement.misc.payTo',
-        defaultMessage: "{amount} to {name}",
+        defaultMessage: '{amount} to {name}',
       },
       pay: {
         id: 'app.settlement.misc.pay',
-        defaultMessage: "Pay",
-      }
+        defaultMessage: 'Pay',
+      },
     },
     labels: {
       settlement: {
         id: 'app.settlement.labels.settlement',
         defaultMessage: 'Settlement',
       },
-    }
-  }, event: {
+    },
+  },
+  event: {
     misc: {
       who: {
         id: 'app.event.manage.misc.who',
-        defaultMessage: 'Who are in this event?'
+        defaultMessage: 'Who are in this event?',
       },
       typeName: {
         id: 'app.event.manage.misc.typeName',
-        defaultMessage: 'Type in a name and hit enter'
+        defaultMessage: 'Type in a name and hit enter',
       },
       error: {
         id: 'app.event.manage.misc.error',
-        defaultMessage: 'Failed'
+        defaultMessage: 'Failed',
       },
       giveName: {
         id: 'app.event.manage.misc.giveName',
-        defaultMessage: 'Give this event a name'
-      }
+        defaultMessage: 'Give this event a name',
+      },
     },
     buttons: {
       update: {
         id: 'app.event.manage.buttons.update',
-        defaultMessage: 'Update'
+        defaultMessage: 'Update',
       },
       return: {
         id: 'app.event.manage.buttons.return',
-        defaultMessage: 'Return'
+        defaultMessage: 'Return',
       },
       createEvent: {
         id: 'app.event.manage.buttons.createEvent',
-        defaultMessage: 'Create this event'
+        defaultMessage: 'Create this event',
       },
     },
     labels: {
       name: {
         id: 'app.event.labels.name',
-        defaultMessage: 'Name'
-      }
-    }
-  }, expense: {
+        defaultMessage: 'Name',
+      },
+    },
+  },
+  expense: {
     misc: {
       editExpense: {
         id: 'app.expense.misc.editExpense',
-        defaultMessage: "Edit an expense",
-      }
+        defaultMessage: 'Edit an expense',
+      },
     },
     labels: {
       share: {
         id: 'app.expense.labels.share',
-        defaultMessage: "Share(s)",
-      }
+        defaultMessage: 'Share(s)',
+      },
     },
     buttons: {
       splitEvenly: {
         id: 'app.expense.buttons.splitEvenly',
-        defaultMessage: "Split evenly",
+        defaultMessage: 'Split evenly',
       },
       byPercentage: {
         id: 'app.expense.buttons.percentage',
-        defaultMessage: "By %",
+        defaultMessage: 'By %',
       },
       byShares: {
         id: 'app.expense.buttons.shares',
-        defaultMessage: "By shares",
-      }
-    }
-  }, expenseList: {
+        defaultMessage: 'By shares',
+      },
+    },
+  },
+  expenseList: {
     misc: {
       allExpenses: {
         id: 'app.expense.list.misc.allExpenses',
-        defaultMessage: "All expenses",
+        defaultMessage: 'All expenses',
       },
       noExpense: {
         id: 'app.expense.list.misc.noExpense',
         defaultMessage: "There's no expense recorded yet",
-      }
+      },
     },
     buttons: {
       edit: {
         id: 'app.expense.list.buttons.edit',
-        defaultMessage: 'Edit'
-      }
-    }
-  }, expenseForm: {
+        defaultMessage: 'Edit',
+      },
+    },
+  },
+  expenseForm: {
     labels: {
       activity: {
         id: 'app.expense.form.label.activity',
-        defaultMessage: 'Activity'
+        defaultMessage: 'Activity',
       },
       cost: {
         id: 'app.expense.form.label.cost',
-        defaultMessage: 'Cost'
+        defaultMessage: 'Cost',
       },
       involved: {
         id: 'app.expense.form.label.involved',
-        defaultMessage: 'People Involved'
+        defaultMessage: 'People Involved',
       },
       payer: {
         id: 'app.expense.form.label.payer',
-        defaultMessage: 'Payer'
-      }
+        defaultMessage: 'Payer',
+      },
     },
     placeholders: {
       activity: {
         id: 'app.expense.form.placeholders.activity',
-        defaultMessage: 'description'
+        defaultMessage: 'description',
       },
       cost: {
         id: 'app.expense.form.placeholders.cost',
-        defaultMessage: 'how much spent'
+        defaultMessage: 'how much spent',
       },
       involved: {
         id: 'app.expense.form.placeholders.involved',
-        defaultMessage: 'split evenly among these people'
+        defaultMessage: 'split evenly among these people',
       },
       payer: {
         id: 'app.expense.form.placeholders.payer',
-        defaultMessage: 'who paid this'
-      }
+        defaultMessage: 'who paid this',
+      },
     },
     buttons: {
       add: {
         id: 'app.expense.form.buttons.add',
-        defaultMessage: 'Add'
+        defaultMessage: 'Add',
       },
       update: {
         id: 'app.expense.form.buttons.update',
-        defaultMessage: 'Update'
+        defaultMessage: 'Update',
       },
       delete: {
         id: 'app.expense.form.buttons.delete',
-        defaultMessage: 'Delete'
+        defaultMessage: 'Delete',
       },
       addAnExpense: {
         id: 'app.expense.form.buttons.addAnExpense',
-        defaultMessage: 'Add an expense'
-      }
+        defaultMessage: 'Add an expense',
+      },
     },
     misc: {
       error: {
         id: 'app.expense.form.misc.error',
-        defaultMessage: 'Failed'
-      }
-    }
-  }
+        defaultMessage: 'Failed',
+      },
+    },
+  },
 };
 
 export const feedback = defineMessages(messages.feedback);

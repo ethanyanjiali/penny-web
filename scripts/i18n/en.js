@@ -73,5 +73,5 @@ export default {
   'expenseForm.buttons.update.defaultMessage': 'Update',
   'expenseForm.buttons.delete.defaultMessage': 'Delete',
   'expenseForm.buttons.addAnExpense.defaultMessage': 'Add an expense',
-  'expenseForm.misc.error.defaultMessage': 'Failed'
+  'expenseForm.misc.error.defaultMessage': 'Failed',
 };

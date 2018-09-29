@@ -7,15 +7,15 @@ import FeedbackContainer from './common/containers/FeedbackContainer';
 import eventRoutes from './event/EventRoutes';
 
 const routes = (
-	<Route path='/' component={ RootContainer }>
-		<IndexRedirect to='/welcome' />
-		<Route path='welcome' component={ WelcomeContainer } />
-		<Route path='history' component={ HistoryContainer } />
-		<Route path='feedback' component={ FeedbackContainer } />
-		<Route path='event'>
-			{eventRoutes}
-		</Route>
-	</Route>
+  <Route path="/" component={RootContainer}>
+    <IndexRedirect to="/welcome" />
+    <Route path="welcome" component={WelcomeContainer} />
+    <Route path="history" component={HistoryContainer} />
+    <Route path="feedback" component={FeedbackContainer} />
+    <Route path="event">
+      {eventRoutes}
+    </Route>
+  </Route>
 );
 
 export default routes;
