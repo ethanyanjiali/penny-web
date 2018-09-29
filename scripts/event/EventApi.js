@@ -1,4 +1,4 @@
-import _ from 'lodash';
+import { mapValues } from 'lodash';
 import request from '../utils/request';
 import { logApi, logApiRequest, logApiResponse } from '../utils/console';
 
@@ -15,8 +15,8 @@ function translateEvent(event) {
       payor: expense.payor,
       involved: expense.involved,
       type: expense.type,
-      percentage: _.mapValues(expense.percentage && JSON.parse(expense.percentage), parseFloat),
-      shares: _.mapValues(expense.shares && JSON.parse(expense.shares), parseInt),
+      percentage: mapValues(expense.percentage && JSON.parse(expense.percentage), parseFloat),
+      shares: mapValues(expense.shares && JSON.parse(expense.shares), parseInt),
     })),
   };
 }

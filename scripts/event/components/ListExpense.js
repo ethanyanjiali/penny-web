@@ -1,10 +1,8 @@
-import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 import {
- Table, Icon, Form, Button, Input, Message, Dropdown, Segment, Header, Modal 
+ Table, Icon, Segment, Header
 } from 'semantic-ui-react';
 import Media from 'react-media';
-import _ from 'lodash';
 import numeral from 'numeral';
 import { injectIntl } from 'react-intl';
 import * as messages from '../../i18n/messages';
@@ -99,7 +97,7 @@ query={{ minWidth: '801px' }} render={() => (
   <Table.Row key={`sub${count}`}>
   <Table.Cell colSpan="4">
   <b>
-{ formatMessage(messages.expenseForm.labels.involved) }:</b> 
+{ formatMessage(messages.expenseForm.labels.involved) }:</b>
 {' '}
 {involved}
 						</Table.Cell>
@@ -125,7 +123,7 @@ query={{ maxWidth: '800px' }} render={() => (
   <Header style={{ borderBottom: '1px solid rgba(0,0,0,.1)', paddingBottom: '7px', marginBottom: '0px' }} as="h4">
   { formatMessage(messages.expenseList.misc.allExpenses) }
   <Icon name="users icon" style={{
- position: 'absolute', marginRight: 0, right: 14, width: '10%', fontSize: '1em' 
+ position: 'absolute', marginRight: 0, right: 14, width: '10%', fontSize: '1em'
 }} onClick={this.toggleDetails.bind(this)} link />
 					</Header>
 				)} />

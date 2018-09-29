@@ -1,8 +1,8 @@
 import flatten from 'flat';
-import _ from 'lodash';
+import { reduce } from 'lodash';
 import { messages } from './messages';
 
-const a = _.reduce(flatten(messages), (result, value, key) => {
+const a = reduce(flatten(messages), (result, value, key) => {
   if (key.includes('defaultMessage')) {
     result[key] = value;
   }

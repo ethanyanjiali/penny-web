@@ -4,7 +4,6 @@ var webpack = require('webpack');
 var appPath = __dirname;
 
 module.exports = {
-  mode: 'development',
   entry: [
     'whatwg-fetch',
     './scripts/index', // Your appʼs entry point
@@ -14,7 +13,6 @@ module.exports = {
     publicPath: '/build/',
     filename: 'index.js',
   },
-  devtool: 'eval-source-map',
   module: {
     rules: [
       {
@@ -43,8 +41,5 @@ module.exports = {
         ],
       },
     ],
-  },
-  devServer: {
-    historyApiFallback: true,
   },
 };

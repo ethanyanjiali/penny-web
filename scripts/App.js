@@ -1,5 +1,5 @@
 import React from 'react';
-import _ from 'lodash';
+import { isString } from 'lodash';
 import { Provider } from 'react-redux';
 import { hot } from 'react-hot-loader'
 import { browserHistory, Router } from 'react-router';
@@ -17,7 +17,7 @@ import request from './utils/request';
 addLocaleData([...zhCNLocaleData, ...ruLocaleData, ...enLocaleData]);
 
 const getLocale = (acceptLanguage) => {
-  if (_.isString(acceptLanguage)) {
+  if (isString(acceptLanguage)) {
     return acceptLanguage && acceptLanguage.split(',') && acceptLanguage.split(',')[0];
   } else if (window.navigator.languages !== undefined) {
     return window.navigator.languages[0];

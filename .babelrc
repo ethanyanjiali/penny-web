@@ -1,4 +1,14 @@
 {
-  "plugins": ["react-hot-loader/babel"],
+  "plugins": [
+    "react-hot-loader/babel",
+    [
+      "transform-imports",
+      {
+        "lodash": {
+          "transform": "lodash/${member}",
+          "preventFullImport": true
+        }
+    }]
+  ],
   "presets": ["@babel/react", "@babel/env"]
 }

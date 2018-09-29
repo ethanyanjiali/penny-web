@@ -1,11 +1,9 @@
 import React, { Component } from 'react';
 import {
- Table, Icon, Form, Button, Input, Message, Dropdown, Segment, Header, Modal 
+  Icon, Modal,
 } from 'semantic-ui-react';
-import _ from 'lodash';
+import { isNil } from 'lodash';
 import { connect } from 'react-redux';
-import { browserHistory } from 'react-router';
-import ManageEvent from '../components/ManageEvent';
 import * as eventAction from '../EventAction';
 import ExpenseForm from '../components/ExpenseForm';
 import { injectIntl } from 'react-intl';
@@ -129,10 +127,10 @@ class EditExpenseModalContainer extends Component {
   }
 
   render() {
-    const isUpdating = !_.isNil(this.props.updatingExpenseCount);
-    const isDeleting = !_.isNil(this.props.deletingExpenseCount);
+    const isUpdating = !isNil(this.props.updatingExpenseCount);
+    const isDeleting = !isNil(this.props.deletingExpenseCount);
     const { expense: {
- shares, percentage, type, involved 
+ shares, percentage, type, involved
 } } = this.state;
 
     const button = (

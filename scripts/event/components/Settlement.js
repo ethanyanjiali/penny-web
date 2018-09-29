@@ -1,8 +1,8 @@
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
-import _ from 'lodash';
+import { sum, values } from 'lodash';
 import {
- Table, Icon, List, Button, Image, Label, Dropdown, Segment, Header
+ Icon, List, Image, Label, Segment, Header,
 } from 'semantic-ui-react';
 import { injectIntl } from 'react-intl';
 import * as messages from '../../i18n/messages';
@@ -146,7 +146,7 @@ class Settlement extends Component {
     let balance = expenses.reduce((result, expense) => {
 			if (expense.type === 'shares') {
 				// split by percentage
-				const totalShares = _.sum(_.values(expense.shares));
+				const totalShares = sum(values(expense.shares));
 				expense.involved.map(name => {
 					let oneBalance = result[name] || 0.0;
 					oneBalance = oneBalance - parseFloat(expense.amount) * expense.shares[name] / totalShares;
