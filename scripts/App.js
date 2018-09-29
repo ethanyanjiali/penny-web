@@ -1,6 +1,7 @@
 import React from 'react';
 import _ from 'lodash';
 import { Provider } from 'react-redux';
+import { hot } from 'react-hot-loader'
 import { browserHistory, Router } from 'react-router';
 import routes from './RootRoutes';
 import enLocaleData from 'react-intl/locale-data/en';
@@ -55,7 +56,7 @@ const transformLocale = (rawLocale) => {
   }
 };
 
-export default class App extends React.Component {
+class App extends React.Component {
 
   constructor() {
     super();
@@ -113,3 +114,5 @@ export default class App extends React.Component {
     );
   }
 }
+
+export default hot(module)(App);

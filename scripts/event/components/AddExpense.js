@@ -2,7 +2,7 @@ import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 import { injectIntl } from 'react-intl';
 import {
-  Icon, Form, Button, Input, Message, Dropdown, Segment, Header, 
+  Icon, Form, Button, Input, Message, Dropdown, Segment, Header,
 } from 'semantic-ui-react';
 import * as messages from '../../i18n/messages';
 import ExpenseForm from './ExpenseForm';
@@ -63,7 +63,7 @@ class AddExpense extends Component {
   					this.state.visible
   					? <Header
 style={{
-  					    textAlign: 'center', borderBottom: '1px solid rgba(0,0,0,.1)', paddingBottom: '7px', marginBottom: '7px', 
+  					    textAlign: 'center', borderBottom: '1px solid rgba(0,0,0,.1)', paddingBottom: '7px', marginBottom: '7px',
   					  }} as="h4"
   					>Add an expense
             </Header>

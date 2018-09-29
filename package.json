@@ -4,7 +4,7 @@
   "description": "Penny web app",
   "scripts": {
     "build": "webpack --config webpack.config.js",
-    "start": "webpack-dev-server --hot",
+    "start": "webpack-dev-server --hot --inline",
     "watch": "node --harmony ./node_modules/webpack/bin/webpack.js --watch --config ./webpack.config.js",
     "test": "./node_modules/mocha/bin/mocha --compilers js:babel-core/register --recursive test"
   },
@@ -25,6 +25,7 @@
     "react-dom": "^16.2.0",
     "react-final-form": "^3.6.5",
     "react-intl": "^2.4.0",
+    "react-hot-loader": "^4.3.11",
     "react-media": "^1.4.0",
     "react-progressive-image": "^0.1.2",
     "react-redux": "^5.0.6",

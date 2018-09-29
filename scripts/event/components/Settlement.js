@@ -203,7 +203,8 @@ class Settlement extends Component {
 
   		return (
     <Segment style={{ marginTop: '20px', backgroundColor: 'rgba(255,255,255,0.7)' }}>
-
+    <Header style={{ textAlign: 'center', borderBottom: '1px solid rgba(0,0,0,.1)', paddingBottom: '7px', marginBottom: '0px'
+}} as="h4">{ formatMessage(messages.settlement.labels.settlement) }</Header>
     <List divided relaxed verticalAlign="middle">
   {rows}
 				</List>
