@@ -2,7 +2,7 @@ import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 import _ from 'lodash';
 import {
- Table, Icon, List, Button, Image, Label, Dropdown, Segment, Header 
+ Table, Icon, List, Button, Image, Label, Dropdown, Segment, Header
 } from 'semantic-ui-react';
 import { injectIntl } from 'react-intl';
 import * as messages from '../../i18n/messages';
@@ -203,8 +203,7 @@ class Settlement extends Component {
 
   		return (
     <Segment style={{ marginTop: '20px', backgroundColor: 'rgba(255,255,255,0.7)' }}>
-    <Header style={{ textAlign: 'center', borderBottom: '1px solid rgba(0,0,0,.1)', paddingBottom: '7px', marginBottom: '0px'
-}} as="h4">{ formatMessage(messages.settlement.labels.settlement) }</Header>
+
     <List divided relaxed verticalAlign="middle">
   {rows}
 				</List>

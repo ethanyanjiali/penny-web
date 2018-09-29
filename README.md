@@ -28,12 +28,10 @@ The amazing Webpack and Babel also help to make it happen.
 4. Redesign
 5. CI
 6. Dockerize
-7. React Router 4
-8. Webpack 4
 9. Async Await
 10. Tree Shaking
 11. Code Splitting
 12. PWA
-13. Bundle size
+13. Bundle size - minimize
 14. Hot Loader
 15. Fix linting
