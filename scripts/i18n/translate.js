@@ -1,10 +1,10 @@
-import flatten from 'flat';
+import flatten from 'flat'
 import _ from 'lodash';
-import * as messages from './messages';
+import { messages } from './messages';
 
-const a = _.reduce(flatten(messages), (result, key) => {
-    if (typeof key == 'string' && key.startsWith('app.')) {
-        result[key] = '';
+const a = _.reduce(flatten(messages), (result, value, key) => {
+    if (key.includes('defaultMessage')) {
+        result[key] = value;
     }
     return result;
 }, {});

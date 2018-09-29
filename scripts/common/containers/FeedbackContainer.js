@@ -25,7 +25,7 @@ class FeedbackContainer extends Component {
 				email: null,
 				content: null
 			}
-		}
+		};
 	}
 
 	changeFeedbackFields(event, target) {
