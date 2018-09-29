@@ -2,42 +2,49 @@ var path = require('path');
 var webpack = require('webpack');
 
 var appPath = __dirname;
- 
+
 module.exports = {
   entry: [
     'whatwg-fetch',
-    './scripts/index' // Your appʼs entry point
+    './scripts/index', // Your appʼs entry point
   ],
-  output: { 
-  	path: path.join(appPath, 'build'),
+  output: {
+    path: path.join(appPath, 'build'),
     publicPath: '/build/',
-  	filename: 'index.js' 
+    filename: 'index.js',
   },
   devtool: 'eval-source-map',
   module: {
-  	preLoaders: [
-      {
-        test: /\.js$/,
-        loaders: ['eslint']
-      }
-    ],
-    loaders: [
+    rules: [
       {
         test: /.js$/,
-        loader: 'babel-loader',
+        use: [
+          {
+            loader: 'babel-loader',
+          },
+          // {
+          //   loader: 'eslint-loader',
+          //   options: {
+          //     quiet: true,
+          //   },
+          // },
+        ],
         exclude: /node_modules/,
-        query: { presets: ['latest', 'react'] }
       },
       {
-      	test: /\.scss$/,
-		    loaders: ['style', 'css', 'sass']
-	    },
+        test: /\.scss$/,
+        use: ['style-loader', 'css-loader', 'sass-loader'],
+      },
       {
-        test: /\.(jpe?g|png|gif|svg)$/i,
-        loaders: [
-          'file?hash=sha512&digest=hex&name=[hash].[ext]'
-        ]
-      }
-    ]
+        test: /\.(png|svg|jpg|gif)$/,
+        use: [
+          'file-loader',
+        ],
+      },
+    ],
+  },
+  devServer: {
+    hot: true,
+    historyApiFallback: true,
   },
 };

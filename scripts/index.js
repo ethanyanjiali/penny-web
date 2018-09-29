@@ -61,7 +61,7 @@ const transformLocale = (rawLocale) => {
 };
 
 fetch(`${API_HOST}common/lang`)
-  .then((response) => response.text())
+  .then(response => response.text())
   .then((acceptLanguage) => {
     const { locale, messages } = transformLocale(getLocale(acceptLanguage));
     ReactDOM.render(
@@ -72,7 +72,7 @@ fetch(`${API_HOST}common/lang`)
           </Router>
         </Provider>
       </IntlProvider>,
-      document.getElementById('react-container')
+      document.getElementById('react-container'),
     );
   })
   .catch(() => {
