@@ -1,7 +1,13 @@
-var path = require('path');
-var webpack = require('webpack');
+const path = require('path');
+const webpack = require('webpack');
+const childProcess = require('child_process');
 
-var appPath = __dirname;
+const appPath = __dirname;
+
+function getRevision() {
+  const sha = childProcess.execSync('git rev-parse HEAD', { encoding: 'utf8', timeout: 1000 }) || 'NO_COMMIT_FOUND';
+  return sha.trim().substring(0, 8);
+}
 
 module.exports = {
   entry: [
@@ -32,4 +38,10 @@ module.exports = {
       },
     ],
   },
+  plugins: [
+    new webpack.DefinePlugin({
+      PRODUCTION: JSON.stringify(true),
+      REVISION: `"${getRevision()}"`,
+    }),
+  ],
 };
