@@ -37,6 +37,14 @@ class WelcomeContainer extends Component {
     browserHistory.push('/event/create');
   }
 
+  handleClickLearnMore = (event) => {
+    document.getElementById('how-it-works').scrollIntoView({
+      behavior: 'smooth',
+      block: 'start',
+    });
+    event.preventDefault();
+  }
+
   render() {
     const events = localStorage.getItem('events');
     const history = null;
@@ -150,6 +158,7 @@ class WelcomeContainer extends Component {
               textAlign: 'center',
               bottom: '3%',
             }}
+            onClick={this.handleClickLearnMore}
           >
             <Icon name="angle up" size="large" />
             <br />
@@ -169,6 +178,7 @@ class WelcomeContainer extends Component {
               <div style={{ textAlign: 'center' }}>
                 <Header
                   style={{ textAlign: 'left' }}
+                  id='how-it-works'
                 >
                   {formatMessage(messages.welcome.misc.how)}
                 </Header>
@@ -248,6 +258,7 @@ class WelcomeContainer extends Component {
                 <Header
                   as="h1"
                   style={{ textAlign: 'left' }}
+                  id='how-it-works'
                 >
                   {formatMessage(messages.welcome.misc.how)}
                 </Header>

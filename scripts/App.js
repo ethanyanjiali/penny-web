@@ -36,6 +36,7 @@ const transformLocale = (rawLocale) => {
     case 'en':
     case 'en-US':
     case 'en-GB':
+    case 'en-us':
       return {
         locale: 'en',
         messages: en,
@@ -54,6 +55,10 @@ const transformLocale = (rawLocale) => {
         messages: ru,
       };
   }
+  return {
+    locale: 'en',
+    messages: en,
+  };
 };
 
 class App extends React.Component {

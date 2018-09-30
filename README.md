@@ -5,8 +5,8 @@ getting more and more popular nowadays because it's so easy to use. Not like oth
 require sign up or login. You just need to share the URL to your friends, then everyone can start filling the expense they paid 
 from their own device. In the meantime, the settlement will be calculated automatically to guide you how to pay out.
 
-Just like the backend, I've open sourced this web UI of Penny in 2018. The single page application is written in React, Redux and Semantic-UI. 
-The amazing Webpack and Babel also help to make it happen.
+Just like the backend, I've open sourced this web UI of Penny in 2018. This single page application is written in React, Redux and Semantic-UI. 
+The amazing styled-components, Webpack and Babel also help to make it happen. The static files are hosted on Google Cloud Storage.
 
 ## Development
 1. Make sure node 8+ and npm 5+ are installed.
@@ -21,13 +21,23 @@ The amazing Webpack and Babel also help to make it happen.
 
 ## Deployment
 
+This project use Circle CI to deploy master changes to production. Webpack will generate prod bundle and 
+it will be sent to GCS. In case you need to manually deploy:
+
+1. Create production build first
+    ```
+    npm run build
+    ```
+2. Copy files to www.mypenny.co GCS bucket
+    ```
+    gsutil cp build/* gs://www.mypenny.co
+    ```
+
 ## TODOS
-1. CSS component
 2. React Final Form
 3. Redux Database
 4. Redesign
-5. CI
-6. Dockerize
 9. Async Await
+11. Refactor
 12. PWA
 15. Fix linting
