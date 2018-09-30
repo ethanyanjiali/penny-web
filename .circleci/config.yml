@@ -6,8 +6,8 @@ version: 2
 jobs:
   build:
     docker:
-      # specify the version you desire here
-      - image: liyanjia92/gcloudnode:g218-n10
+      # specify the version you desire here: a custom version with both node and python
+      - image: liyanjia92/nodepython:n8-p370-aws
 
       # Specify service dependencies here if necessary
       # CircleCI maintains a library of pre-built images
@@ -36,14 +36,6 @@ jobs:
       # Build production bundle
       - run: npm run build
 
-      # Authorize gcloud
-      - run:
-          name: Store Service Account
-          command: echo $GCLOUD_SERVICE_KEY > ${HOME}/gcloud-service-key.json
+      # Release new build files by copying them to S3
       - run: |
-          sudo gcloud auth activate-service-account --key-file=${HOME}/gcloud-service-key.json
-          sudo gcloud --quiet config set project ${GOOGLE_PROJECT_ID}
-
-      # Release new build files by copying them to GCS
-      - run: |
-          sudo gsutil cp build/* gs://www.mypenny.co
+          aws s3 sync build/* s3://mypenny.co --delete
