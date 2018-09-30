@@ -34,7 +34,7 @@ it will be synced to AWS S3. In case you need to manually deploy:
     ```
     npm run build
     ```
-2. Copy files to www.mypenny.co GCS bucket
+2. Copy files to mypenny.co S3 bucket
     ```
     aws s3 sync ./build s3://mypenny.co --delete
     ```
