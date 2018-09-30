@@ -1,12 +1,28 @@
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
+import styled, { keyframes } from 'styled-components';
 import {
-  Icon, Form, Button, Input, Message, Dropdown, Segment,
+  Icon, Segment,
 } from 'semantic-ui-react';
 import { Link } from 'react-router';
 import CopyToClipboard from 'react-copy-to-clipboard';
 import { injectIntl } from 'react-intl';
 import * as messages from '../../i18n/messages';
+
+const blinkKeyframes = keyframes`
+    0%    {opacity:   1;}
+    10%    {opacity:   1;}
+    22%   {opacity:   0.2;}
+    34%   {opacity:   1;}
+    100%  {opacity:   1;}
+`
+
+const BlinkButton = styled.button`
+    -webkit-animation: blink 4s;
+    animation: ${blinkKeyframes} 4s;
+    -webkit-animation-iteration-count:infinite;
+    animation-iteration-count:infinite;
+`
 
 const propTypes = {
 };
@@ -32,10 +48,10 @@ class ShareLink extends Component {
           text={this.props.url}
           onCopy={() => this.setState({ copied: true })}
         >
-          <button className="ui right labeled black basic icon button button blink" onClick={this.shareLink.bind(this)}>
+          <BlinkButton className="ui right labeled black basic icon button button" onClick={this.shareLink.bind(this)}>
             <i className="share alternate icon" />
             { formatMessage(messages.share.misc.shareLink) }
-          </button>
+          </BlinkButton>
         </CopyToClipboard>
       </div>
       <div style={{ textAlign: 'center', marginTop: '10px' }}>

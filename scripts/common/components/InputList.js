@@ -1,30 +1,65 @@
-import React, { Component } from 'react';
-import { Input, Image } from 'semantic-ui-react';
+import React, { PureComponent } from 'react';
+import PropTypes from 'prop-types';
+import styled from 'styled-components';
+import { Input } from 'semantic-ui-react';
 
-export default class InputList extends Component {
+const InputListRow = styled.div`
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 10px 0;
+`;
+
+const InputListInputLeft = styled.div`
+  flex: 1;
+`;
+
+const InputListContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+`;
+
+const StyledInput = styled(Input)`
+  flex: 5;
+`;
+
+export default class InputList extends PureComponent {
+  static defaultProps = {
+    values: {},
+    labels: [],
+  }
+
+  static propTypes = {
+    values: PropTypes.object,
+    labels: PropTypes.array,
+    onChange: PropTypes.func,
+    unit: PropTypes.string,
+  }
+
   render() {
     const {
-      values = {}, labels = [], unit, onChange,
+      values, labels, unit, onChange,
     } = this.props;
     return (
-      <div className="input-list-container">
-        {labels.map((label, index) => (
-          <div className="input-list-row">
-            <div className="input-list-input-left">
-              {/* <Image avatar style={{ marginRight: '5px' }} src={require(`../../../assets/images/avatar_${index % 11}.png`)} /> */}
-              <b>{ label }</b>
-            </div>
-            <Input
+      <InputListContainer>
+        {labels.map(label => (
+          <InputListRow>
+            <InputListInputLeft>
+              <b>{label}</b>
+            </InputListInputLeft>
+            <StyledInput
               onChange={onChange}
               name={label}
               value={values[label]}
-              className="input-list-input-right"
-              label={{ basic: true, content: unit }}
+              label={{
+                basic: true,
+                content: unit,
+              }}
               labelPosition="right"
             />
-          </div>
+          </InputListRow>
         ))}
-      </div>
+      </InputListContainer>
     );
   }
 }

@@ -1,15 +1,23 @@
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
+import styled from 'styled-components';
 import { connect } from 'react-redux';
 import { injectIntl } from 'react-intl';
 import Media from 'react-media';
-import { Dimmer, Loader, Segment } from 'semantic-ui-react';
-import { browserHistory } from 'react-router';
 import ProgressiveImage from 'react-progressive-image';
-import { Icon, Button } from 'semantic-ui-react';
-import * as userAction from '../../user/UserAction';
+import { Button } from 'semantic-ui-react';
 import * as messages from '../../i18n/messages';
 import NavBar from '../components/NavBar';
+
+const AppBanner = styled.div`
+  position: fixed;
+  bottom: 0;
+  margin-bottom: 10px;
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  width: 100%;
+`
 
 const mapStateToProps = state => ({
   currentEvent: state.event.currentEvent,
@@ -179,9 +187,9 @@ class RootContainer extends Component {
         <Media
           query={{ maxWidth: '500px' }}
           render={() => (
-            <div className="app-banner">
+            <AppBanner>
               <Button onClick={this.handleOpenApp.bind(this)} size="tiny" content="Open in App" icon="cube" labelPosition="left" color="blue" compact />
-            </div>
+            </AppBanner>
           )}
         />
         )}

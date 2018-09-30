@@ -8,7 +8,9 @@
           "transform": "lodash/${member}",
           "preventFullImport": true
         }
-    }]
+    }],
+    ["babel-plugin-styled-components"],
+    ["transform-class-properties"],
   ],
   "presets": ["@babel/react", "@babel/env"]
 }

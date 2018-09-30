@@ -10,7 +10,7 @@ module.exports = {
   ],
   output: {
     path: path.join(appPath, 'build'),
-    publicPath: '/build/',
+    publicPath: '/',
     filename: 'index.js',
   },
   module: {
@@ -21,18 +21,8 @@ module.exports = {
           {
             loader: 'babel-loader',
           },
-          // {
-          //   loader: 'eslint-loader',
-          //   options: {
-          //     quiet: true,
-          //   },
-          // },
         ],
         exclude: /node_modules/,
-      },
-      {
-        test: /\.scss$/,
-        use: ['style-loader', 'css-loader', 'sass-loader'],
       },
       {
         test: /\.(png|svg|jpg|gif)$/,

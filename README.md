@@ -29,7 +29,5 @@ The amazing Webpack and Babel also help to make it happen.
 5. CI
 6. Dockerize
 9. Async Await
-10. Tree Shaking
 12. PWA
-13. Bundle size - minimize
 15. Fix linting
