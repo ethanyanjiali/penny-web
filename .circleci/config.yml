@@ -38,4 +38,4 @@ jobs:
 
       # Release new build files by copying them to S3
       - run: |
-          aws s3 sync build/* s3://mypenny.co --delete
+          aws s3 sync ./build s3://mypenny.co --delete
