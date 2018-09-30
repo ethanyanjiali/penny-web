@@ -54,11 +54,12 @@ const transformLocale = (rawLocale) => {
         locale: 'ru',
         messages: ru,
       };
+    default:
+      return {
+        locale: 'en',
+        messages: en,
+      };
   }
-  return {
-    locale: 'en',
-    messages: en,
-  };
 };
 
 class App extends React.Component {
